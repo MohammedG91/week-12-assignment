@@ -1,0 +1,3 @@
+edit
+delete
+view attendees 
