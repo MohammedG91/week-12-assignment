@@ -13,6 +13,9 @@ export default function Header() {
       <h1 className="bg-slate-300 rounded-md border-2">
         <Link href="/">homepage</Link>
       </h1>
+      <h1 className="bg-slate-300 rounded-md border-2">
+        <Link href="/profile">profile</Link>
+      </h1>
       <h1>logo</h1>
       <aside>
         <SignedOut>
