@@ -44,7 +44,7 @@ export default function TermsPage() {
                     e.preventDefault();
                     setOpenItem(section.id);
                   }}
-                  className="text-blue-600 text-sm"
+                  className="text-blue-600 text-sm hover:underline"
                 >
                   {section.title}
                 </a>
@@ -67,9 +67,13 @@ export default function TermsPage() {
           {sections.map((item) => (
             <Accordion.Item key={item.id} value={item.id}>
               <Accordion.Header>
-                <Accordion.Trigger>{item.title}</Accordion.Trigger>
+                <Accordion.Trigger className="w-full text-lg font-medium text-gray-700 p-4 border-b border-gray-200 hover:bg-gray-50">
+                  {item.title}
+                </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content>{item.content}</Accordion.Content>
+              <Accordion.Content className="p-4 text-sm text-gray-600">
+                {item.content}
+              </Accordion.Content>
             </Accordion.Item>
           ))}
         </Accordion.Root>
