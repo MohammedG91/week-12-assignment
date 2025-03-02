@@ -1,6 +1,7 @@
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function TermsPage() {
@@ -43,6 +44,14 @@ export default function TermsPage() {
                   onClick={(e) => {
                     e.preventDefault();
                     setOpenItem(section.id);
+
+                    // Delay scrolling slightly to allow accordion to expand
+                    setTimeout(() => {
+                      document.getElementById(section.id)?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }, 200);
                   }}
                   className="text-blue-600 text-sm hover:underline"
                 >
@@ -69,6 +78,12 @@ export default function TermsPage() {
               <Accordion.Header>
                 <Accordion.Trigger className="w-full text-lg font-medium text-gray-700 p-4 border-b border-gray-200 hover:bg-gray-50">
                   {item.title}
+                  <motion.span
+                    animate={{ rotate: openItem === item.id ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    ▼
+                  </motion.span>
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content className="p-4 text-sm text-gray-600">
