@@ -16,6 +16,16 @@ export default function TermsPage() {
       title: "II. Subscriptions, Payments, and Cancellation",
       content: "Details about subscriptions.",
     },
+    {
+      id: "prohibited",
+      title: "III. Prohibited Uses",
+      content: "Details about prohibited uses.",
+    },
+    {
+      id: "materials",
+      title: "IV. Our Materials and License to You",
+      content: "Details about materials and license.",
+    },
     // Add more sections here
   ];
 
@@ -28,7 +38,14 @@ export default function TermsPage() {
           <ul>
             {sections.map((section) => (
               <li key={section.id}>
-                <a href={`#${section.id}`} className="text-blue-600 text-sm">
+                <a
+                  href={`#${section.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenItem(section.id);
+                  }}
+                  className="text-blue-600 text-sm"
+                >
                   {section.title}
                 </a>
               </li>
