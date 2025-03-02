@@ -86,8 +86,18 @@ export default function TermsPage() {
                   </motion.span>
                 </Accordion.Trigger>
               </Accordion.Header>
-              <Accordion.Content className="p-4 text-sm text-gray-600">
-                {item.content}
+              <Accordion.Content>
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: openItem === item.id ? "auto" : 0,
+                    opacity: openItem === item.id ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="p-4 text-sm text-gray-600"
+                >
+                  {item.content}
+                </motion.div>
               </Accordion.Content>
             </Accordion.Item>
           ))}
