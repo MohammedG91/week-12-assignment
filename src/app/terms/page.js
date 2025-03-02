@@ -20,7 +20,7 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 w-full">
       {/* Sidebar */}
       <aside className="w-1/4 bg-white p-6 shadow-md">
         <h2 className="text-xl font-bold mb-4">Quick Navigation</h2>
