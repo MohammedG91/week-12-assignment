@@ -84,7 +84,7 @@ const teamMembers = [
     name: "Sita",
     role: "COO",
     image: "/team/sita.jpg",
-    bio: "Enjoys problem-solving & programming logic.",
+    bio: "While hiking, Sita encountered a 'fork' in the trail; she had to 'merge' into the new path.",
   },
   {
     id: 4,
