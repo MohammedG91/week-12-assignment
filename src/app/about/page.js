@@ -15,9 +15,7 @@ export default function About() {
           Our journey began as a bootcamp project, but it quickly evolved into
           something more—a platform that connects students with skilled
           teachers, fostering accessible and community-driven learning
-          experiences. Whether you're looking to learn a new skill or share your
-          expertise, our app is here to make that connection seamless and
-          impactful.
+          experiences.
         </p>
       </section>
 
@@ -27,19 +25,26 @@ export default function About() {
         </h2>
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member) => (
-            <div
-              key={member.id}
-              className="bg-[#7E99A3] shadow-lg p-6 rounded-lg text-center transition-all duration-300 hover:bg-[#4C585B] hover:text-white"
-            >
-              <Image
-                src={member.image}
-                width={100}
-                height={100}
-                alt={member.name}
-                className="rounded-full mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold">{member.name}</h3>
-              <p>{member.role}</p>
+            <div key={member.id} className="group perspective">
+              <div className="relative w-full h-[250px] transform-style-3d transition-transform duration-500 group-hover:rotate-y-180">
+                <div className="absolute inset-0 bg-[#7E99A3] shadow-lg p-6 rounded-lg text-center flex flex-col items-center justify-center transform rotate-y-0 backface-hidden">
+                  <Image
+                    src={member.image}
+                    width={100}
+                    height={100}
+                    alt={member.name}
+                    className="rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-[#4C585B]">
+                    {member.name}
+                  </h3>
+                  <p className="text-[#A5BFCC]">{member.role}</p>
+                </div>
+
+                <div className="absolute inset-0 bg-[#4C585B] text-white shadow-lg p-6 rounded-lg text-center flex flex-col items-center justify-center transform rotate-y-180 backface-hidden opacity-0 group-hover:opacity-100">
+                  <p className="text-lg">{member.bio}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -59,8 +64,32 @@ export default function About() {
 }
 
 const teamMembers = [
-  { id: 1, name: "Mohammed", role: "CEO", image: "/team/mohammed.jpg" },
-  { id: 2, name: "Amina", role: "CTO", image: "/team/amina.jpg" },
-  { id: 3, name: "Sita", role: "COO", image: "/team/sita.jpg" },
-  { id: 4, name: "Jae", role: "CMO", image: "/team/jae.jpg" },
+  {
+    id: 1,
+    name: "Mohammed",
+    role: "CEO",
+    image: "/team/mohammed.jpg",
+    bio: "Loves full-stack development & AI projects.",
+  },
+  {
+    id: 2,
+    name: "Amina",
+    role: "CTO",
+    image: "/team/amina.jpg",
+    bio: "Passionate about clean code & UI/UX design.",
+  },
+  {
+    id: 3,
+    name: "Sita",
+    role: "COO",
+    image: "/team/sita.jpg",
+    bio: "Enjoys problem-solving & programming logic.",
+  },
+  {
+    id: 4,
+    name: "Jae",
+    role: "CMO",
+    image: "/team/jae.jpg",
+    bio: "Marketing expert & tech enthusiast who excels with reacts.",
+  },
 ];
