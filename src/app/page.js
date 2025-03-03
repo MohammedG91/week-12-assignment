@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-// Import the Image component
+import Image from "next/image";
 
 export const metadata = {
   title: "Local Skills Hub",
@@ -11,7 +10,13 @@ export default function Homepage() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
       <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
-        {/* Logo */}
+        <Image
+          src="/logo/logo.png"
+          alt="Local Skills Hub"
+          width={120}
+          height={50}
+          className="rounded-lg"
+        />
 
         <h1 className="text-5xl font-bold mb-6">Welcome to Local Skills Hub</h1>
         <p className="text-lg max-w-2xl text-center mb-8">
