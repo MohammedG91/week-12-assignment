@@ -1,6 +1,5 @@
 import Link from "next/link";
-
-// Import the Image component
+import Image from "next/image";
 
 export const metadata = {
   title: "Local Skills Hub",
@@ -12,6 +11,15 @@ export default function Homepage() {
     <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
       <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
         {/* Logo */}
+        <div className="mb-8">
+          <Image
+            src="/logo.png"
+            alt="Local Skills Hub Logo"
+            width={150}
+            height={100}
+            className="mx-auto"
+          />
+        </div>
 
         <h1 className="text-5xl font-bold mb-6">Welcome to Local Skills Hub</h1>
         <p className="text-lg max-w-2xl text-center mb-8">
@@ -25,6 +33,7 @@ export default function Homepage() {
             className="w-full p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC]"
           />
         </div>
+
         {/* Events Section */}
         <div className="w-full max-w-2xl mt-8">
           <h2 className="text-3xl font-semibold mb-4">Upcoming Events</h2>
@@ -53,6 +62,7 @@ export default function Homepage() {
             </Link>
           </div>
         </div>
+
         {/* Community Section */}
         <div className="w-full max-w-2xl mt-12">
           <h2 className="text-3xl font-semibold mb-4">Join Our Community</h2>

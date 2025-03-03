@@ -11,15 +11,14 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center w-full bg-[#4C585B] p-6 shadow-lg">
       <div className="flex items-center space-x-6">
-        <h1 className="text-2xl font-bold text-[#F4EDD3]">
-          {/* Maybe swap for logo*/}
+        <h1 className="text-2xl font-bold text-[#D1E2EB]">
           <Link href="/">Local Skills Hub</Link>
         </h1>
         <nav className="flex space-x-6">
-          <h1 className="text-lg text-[#F4EDD3] hover:text-[#508c9b] transition duration-300">
+          <h1 className="text-lg text-[#D1E2EB] hover:text-[#508c9b] transition duration-300">
             <Link href="/profile">Profile</Link>
           </h1>
-          <h1 className="text-lg text-[#F4EDD3] hover:text-[#508c9b] transition duration-300">
+          <h1 className="text-lg text-[#D1E2EB] hover:text-[#508c9b] transition duration-300">
             <Link href="/events">Events</Link>
           </h1>
         </nav>

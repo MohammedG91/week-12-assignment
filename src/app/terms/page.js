@@ -90,9 +90,9 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-100 w-full">
+    <div className="flex min-h-screen bg-[#A5BFCC] w-full">
       {/* Sidebar */}
-      <aside className="w-1/4 bg-white p-6 shadow-md">
+      <aside className="w-1/5 bg-[#134b70] p-6 shadow-md text-[#D1E2EB]">
         <h2 className="text-xl font-bold mb-4">Quick Navigation</h2>
         <nav>
           <ul>
@@ -101,10 +101,8 @@ export default function TermsPage() {
                 <a
                   href={`#${section.id}`}
                   onClick={(e) => {
-                    e.preventDefault(); // Prevent default anchor jump
-                    setOpenItem(section.id); // Open the accordion
-
-                    // Delay scrolling slightly to allow accordion to expand first
+                    e.preventDefault();
+                    setOpenItem(section.id);
                     setTimeout(() => {
                       document.getElementById(section.id)?.scrollIntoView({
                         behavior: "smooth",
@@ -112,7 +110,7 @@ export default function TermsPage() {
                       });
                     }, 200);
                   }}
-                  className="text-blue-600 text-sm hover:underline"
+                  className="text-[#D1E2EB] text-sm hover:underline"
                 >
                   {section.title}
                 </a>
@@ -123,8 +121,10 @@ export default function TermsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-10 bg-white shadow-md">
-        <h1 className="text-3xl font-bold mb-6">Terms & Conditions</h1>
+      <main className="flex-1 p-10 bg-[#D1E2EB] shadow-md">
+        <h1 className="text-3xl font-bold mb-6 text-[#134b70]">
+          Terms & Conditions
+        </h1>
 
         <Accordion.Root
           type="single"
@@ -137,7 +137,7 @@ export default function TermsPage() {
               <Accordion.Header>
                 <Accordion.Trigger
                   id={item.id}
-                  className="flex justify-between w-full text-lg font-medium text-gray-700 p-4 border-b border-gray-200 hover:bg-gray-50"
+                  className="flex justify-between w-full text-lg font-medium text-[#134b70] p-4 border-b border-[#508c9b] hover:bg-[#7E99A3]"
                 >
                   {item.title}
                   <motion.span
@@ -157,7 +157,7 @@ export default function TermsPage() {
                     opacity: openItem === item.id ? 1 : 0,
                   }}
                   transition={{ duration: 0.3 }}
-                  className="p-4 text-sm text-gray-600"
+                  className="p-4 text-sm text-[#4C585B]"
                 >
                   {item.content}
                 </motion.div>
