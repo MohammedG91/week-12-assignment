@@ -9,15 +9,11 @@ export default async function Profile() {
   const id = userId;
 
   // Fetching user profile data
-  const user = await db.query(
-    `SELECT * FROM users WHERE clerkid = $1`,
-    [id]
-  );
+  const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [id]);
 
   // showing this when user doesn't have profile
   if (!user.rows.length) {
     return (
-    
       <section
         className={`${profilestyle.section} flex justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
@@ -32,7 +28,6 @@ export default async function Profile() {
           Create Profile.
         </Link>
       </section>
-     
     );
   }
 
@@ -41,7 +36,9 @@ export default async function Profile() {
 
   return (
     <>
-      <section className={`${profilestyle.section} m-5`}>
+      <section
+        className={`${profilestyle.section} flex justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
+      >
         <h1 className={`${profilestyle.h1} text-lg`}>Welcome {username}!</h1>
 
         <h2 className={`${profilestyle.h2} text-black`}>
@@ -62,7 +59,6 @@ export default async function Profile() {
             Delete Profile
           </Link>
         </nav>
-      
       </section>
     </>
   );
