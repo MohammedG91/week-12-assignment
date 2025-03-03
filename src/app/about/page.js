@@ -6,8 +6,18 @@ export default function About() {
       <section className="w-full relative bg-[#134b70] text-white py-20 px-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Our Story & Mission</h1>
         <p className="max-w-2xl mx-auto text-lg">
-          We believe in the power of skill-sharing. Our mission is to connect
-          people, empower learners, and build a community of knowledge exchange.
+          We are Mohammed, Amina, Sita, and Jae—four passionate developers from
+          a coding bootcamp, united by a shared vision: to bridge the gap
+          between learners and educators in local communities. That's where
+          Local Skills Hub was born.
+        </p>
+        <p className="max-w-2xl mx-auto text-lg mt-4">
+          Our journey began as a bootcamp project, but it quickly evolved into
+          something more—a platform that connects students with skilled
+          teachers, fostering accessible and community-driven learning
+          experiences. Whether you're looking to learn a new skill or share your
+          expertise, our app is here to make that connection seamless and
+          impactful.
         </p>
       </section>
 
