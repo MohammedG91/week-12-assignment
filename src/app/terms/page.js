@@ -92,7 +92,7 @@ export default function TermsPage() {
   return (
     <div className="flex min-h-screen bg-[#A5BFCC] w-full">
       {/* Sidebar */}
-      <aside className="w-1/5 bg-[#134b70] p-6 shadow-md text-[#F4EDD3]">
+      <aside className="w-1/5 bg-[#134b70] p-6 shadow-md text-[#D1E2EB]">
         <h2 className="text-xl font-bold mb-4">Quick Navigation</h2>
         <nav>
           <ul>
@@ -110,7 +110,7 @@ export default function TermsPage() {
                       });
                     }, 200);
                   }}
-                  className="text-[#F4EDD3] text-sm hover:underline"
+                  className="text-[#D1E2EB] text-sm hover:underline"
                 >
                   {section.title}
                 </a>
@@ -121,7 +121,7 @@ export default function TermsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-10 bg-[#F4EDD3] shadow-md">
+      <main className="flex-1 p-10 bg-[#D1E2EB] shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-[#134b70]">
           Terms & Conditions
         </h1>
