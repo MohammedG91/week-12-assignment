@@ -6,7 +6,7 @@
       {
         "id": "1d23030a414f9d12",
         "type": "tabs",
-        "dimension": 62.261146496815286,
+        "dimension": 62.26114649681529,
         "children": [
           {
             "id": "4c5f34a229f58456",
@@ -213,14 +213,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2e50d2b370ad784c",
+  "active": "4c5f34a229f58456",
   "lastOpenFiles": [
-    "RSVPs.md",
-    "Profile Page.md",
-    "Community.md",
-    "Event Details Page.md",
-    "Events Page.md",
     "Create an Event Page.md",
+    "Profile Page.md",
+    "Events Page.md",
+    "Event Details Page.md",
+    "RSVPs.md",
+    "Community.md",
     "Manage event.md",
     "User Autentication.md",
     "Browse Skills Page.md",
