@@ -27,7 +27,66 @@ export default function TermsPage() {
       title: "IV. Our Materials and License to You",
       content: "Details about materials and license.",
     },
-    // Add more sections here
+    {
+      id: "user-content",
+      title: "V. User Content",
+      content: "Details about user content.",
+    },
+    {
+      id: "live-events",
+      title: "VI. Live Events",
+      content: "Details about live events.",
+    },
+    {
+      id: "notifications",
+      title: "VII. Content Notifications and Content Moderation",
+      content: "Details about notifications.",
+    },
+    {
+      id: "recommendations",
+      title: "VIII. Content Recommendations",
+      content: "Details about recommendations.",
+    },
+    {
+      id: "arbitration",
+      title: "IX. Arbitration Agreement",
+      content: "Details about arbitration.",
+    },
+    {
+      id: "class-action",
+      title: "X. Class Action Waiver",
+      content: "Details about class action.",
+    },
+    {
+      id: "disclaimer",
+      title: "XI. Disclaimer of Warranties",
+      content: "Details about disclaimer.",
+    },
+    {
+      id: "limitation",
+      title: "XII. Limitation of Liability",
+      content: "Details about liability.",
+    },
+    {
+      id: "indemnification",
+      title: "XIII. Indemnification",
+      content: "Details about indemnification.",
+    },
+    {
+      id: "sanctions",
+      title: "XIV. Sanctions and Export Laws",
+      content: "Details about sanctions.",
+    },
+    {
+      id: "contact",
+      title: "XV. How to Contact Us",
+      content: "Details about contacting us.",
+    },
+    {
+      id: "miscellaneous",
+      title: "XVI. Miscellaneous",
+      content: "Miscellaneous information.",
+    },
   ];
 
   return (
@@ -42,10 +101,10 @@ export default function TermsPage() {
                 <a
                   href={`#${section.id}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    setOpenItem(section.id);
+                    e.preventDefault(); // Prevent default anchor jump
+                    setOpenItem(section.id); // Open the accordion
 
-                    // Delay scrolling slightly to allow accordion to expand
+                    // Delay scrolling slightly to allow accordion to expand first
                     setTimeout(() => {
                       document.getElementById(section.id)?.scrollIntoView({
                         behavior: "smooth",
@@ -76,7 +135,10 @@ export default function TermsPage() {
           {sections.map((item) => (
             <Accordion.Item key={item.id} value={item.id}>
               <Accordion.Header>
-                <Accordion.Trigger className="w-full text-lg font-medium text-gray-700 p-4 border-b border-gray-200 hover:bg-gray-50">
+                <Accordion.Trigger
+                  id={item.id}
+                  className="flex justify-between w-full text-lg font-medium text-gray-700 p-4 border-b border-gray-200 hover:bg-gray-50"
+                >
                   {item.title}
                   <motion.span
                     animate={{ rotate: openItem === item.id ? 180 : 0 }}
@@ -88,6 +150,7 @@ export default function TermsPage() {
               </Accordion.Header>
               <Accordion.Content>
                 <motion.div
+                  hidden={openItem !== item.id}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{
                     height: openItem === item.id ? "auto" : 0,
