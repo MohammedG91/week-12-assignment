@@ -29,7 +29,7 @@ export default function About() {
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="bg-[#7E99A3] shadow-lg p-6 rounded-lg text-center"
+              className="bg-[#7E99A3] shadow-lg p-6 rounded-lg text-center transition-all duration-300 hover:bg-[#4C585B] hover:text-white"
             >
               <Image
                 src={member.image}
@@ -38,10 +38,8 @@ export default function About() {
                 alt={member.name}
                 className="rounded-full mx-auto mb-4"
               />
-              <h3 className="text-xl font-semibold text-[#4C585B]">
-                {member.name}
-              </h3>
-              <p className="text-[#A5BFCC]">{member.role}</p>
+              <h3 className="text-xl font-semibold">{member.name}</h3>
+              <p>{member.role}</p>
             </div>
           ))}
         </div>
