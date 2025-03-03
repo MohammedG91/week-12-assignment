@@ -1,66 +1,31 @@
-"use client";
-
-import { useState } from "react";
-// import { revalidatePath } from "next/cache";
-// import { redirect } from "next/navigation";
-import Link from "next/link";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import styles from "../../../style.module.css";
-export default function CreateProfile() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [username, setUsername] = useState("");
-  const [profileSaved, setProfileSaved] = useState(false);
+import { db } from "@/utils/dbConnection";
+
+export default async function CreateProfile({ params }) {
+  const slug = await params;
 
   // Saving user profile details
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  async function handleSubmit(formData) {
+    "use server";
+
     const username = formData.get("username");
     const bio = formData.get("bio");
     const profilepic = formData.get("profilepic");
     const datejoined = new Date().toISOString();
     const usertype = formData.get("usertype");
 
-    setLoading(true);
-    setError(null);
-    setUsername(username);
+    await db.query(
+      `INSERT INTO users (clerkid,username,profilepic,bio,datejoined,usertype) VALUES ($1, $2, $3, $4,$5,$6)`,
+      [slug.id, username, profilepic, bio, datejoined, usertype]
+    );
 
-    try {
-      const response = await fetch("/api/createprofile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          profilepic,
-          bio,
-          datejoined,
-          usertype,
-        }),
-      });
+    // Redirecting to the profile page after saving
+    revalidatePath("/profile");
 
-      if (!response.ok) {
-        throw new Error("Failed to save profile");
-      }
-
-      const data = await response.json();
-      console.log(data.message);
-      window.alert("Profile saved successfully!");
-
-      setProfileSaved(true);
-
-      // Redirecting to the profile page after saving
-      // revalidatePath("/profile");
-
-      // redirect("/profile");
-    } catch (error) {
-      setError(error.message);
-      console.error("Error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    redirect("/profile");
+  }
 
   return (
     <div
@@ -71,7 +36,7 @@ export default function CreateProfile() {
       </h1>
 
       <form
-        onSubmit={handleSubmit}
+        action={handleSubmit}
         className="flex flex-col justify-center items-center border-2 border-solid border-gray-700 w-[70vh] p-3 rounded-lg"
       >
         <label htmlFor="username">Username: </label>
@@ -114,24 +79,10 @@ export default function CreateProfile() {
         <button
           type="submit"
           className="bg-emerald-500 border-2 p-1 m-4 hover:bg-emerald-400 rounded-lg"
-          disabled={loading || profileSaved}
         >
-          {loading
-            ? "Saving..."
-            : profileSaved
-            ? "Profile Saved"
-            : "Add Profile"}
+          save profile
         </button>
       </form>
-
-      {error && <p className="text-red-500">{error}</p>}
-
-      {/* Showing link to the user page once profile is saved */}
-      {profileSaved && username && (
-        <button className="bg-blue-400 border-2 p-1 m-4 hover:bg-blue-200 rounded-lg">
-          <Link href={`/profile`}>Go to Profile Page</Link>
-        </button>
-      )}
     </div>
   );
 }
