@@ -19,7 +19,7 @@ export default function Header() {
             <Link href="/profile">Profile</Link>
           </h1>
           <h1 className="text-lg text-[#D1E2EB] hover:text-[#508c9b] transition duration-300">
-            <Link href="/events">Events</Link>
+            <Link href="/event">Events</Link>
           </h1>
         </nav>
       </div>
