@@ -2,20 +2,21 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="w-full bg-[#F4EDD3] text-gray-900">
+    <div className="w-full bg-[#D1E2EB] text-gray-900">
       <section className="w-full relative bg-[#134b70] text-white py-20 px-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Our Story & Mission</h1>
         <p className="max-w-2xl mx-auto text-lg">
           We are Mohammed, Amina, Sita, and Jae—four passionate developers from
           a coding bootcamp, united by a shared vision: to bridge the gap
-          between learners and educators in local communities. That's where
-          Local Skills Hub was born.
+          between learners and educators in local communities.
         </p>
         <p className="max-w-2xl mx-auto text-lg mt-4">
           Our journey began as a bootcamp project, but it quickly evolved into
           something more—a platform that connects students with skilled
           teachers, fostering accessible and community-driven learning
-          experiences.
+          experiences. Whether you're looking to learn a new skill or share your
+          expertise, our app is here to make that connection seamless and
+          impactful.
         </p>
       </section>
 
@@ -50,7 +51,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="w-full bg-[#F4EDD3] py-16 px-6 text-center">
+      <section className="w-full bg-[#D1E2EB] py-16 px-6 text-center">
         <h2 className="text-3xl font-semibold text-[#134b70] mb-4">
           Why Skill-Sharing Matters
         </h2>
@@ -83,13 +84,13 @@ const teamMembers = [
     name: "Sita",
     role: "COO",
     image: "/team/sita.jpg",
-    bio: "Enjoys problem-solving & programming logic.",
+    bio: "Enjoys problem-solving & Python automation.",
   },
   {
     id: 4,
     name: "Jae",
     role: "CMO",
     image: "/team/jae.jpg",
-    bio: "Marketing expert & tech enthusiast who excels with reacts.",
+    bio: "Marketing expert & tech enthusiast.",
   },
 ];
