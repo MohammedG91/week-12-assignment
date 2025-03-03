@@ -77,20 +77,20 @@ const teamMembers = [
     name: "Amina",
     role: "CTO",
     image: "/team/amina.jpg",
-    bio: "Passionate about clean code & UI/UX design.",
+    bio: "Passionate about clean code & UI/UX design, as well as research new methods.",
   },
   {
     id: 3,
     name: "Sita",
     role: "COO",
     image: "/team/sita.jpg",
-    bio: "Enjoys problem-solving & Python automation.",
+    bio: "Enjoys problem-solving & programming logic.",
   },
   {
     id: 4,
     name: "Jae",
     role: "CMO",
     image: "/team/jae.jpg",
-    bio: "Marketing expert & tech enthusiast.",
+    bio: "Marketing expert & tech enthusiast who excels in react apps.",
   },
 ];
