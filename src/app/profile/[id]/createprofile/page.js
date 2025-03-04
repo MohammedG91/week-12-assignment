@@ -17,60 +17,66 @@ export default async function CreateProfile({ params }) {
     const usertype = formData.get("usertype");
 
     await db.query(
-      `INSERT INTO users (clerkid,username,profilepic,bio,datejoined,usertype) VALUES ($1, $2, $3, $4,$5,$6)`,
+      `INSERT INTO users (clerkid,username,profilepic,bio,datejoined,usertype) VALUES ($1, $2, $3, $4, $5, $6)`,
       [slug.id, username, profilepic, bio, datejoined, usertype]
     );
 
     // Redirecting to the profile page after saving
     revalidatePath("/profile");
-
     redirect("/profile");
   }
 
   return (
-    <div
-      className={`${styles.section} flex justify-center flex-col items-center w-full m-6 bg-slate-300 p-6 rounded-3xl`}
-    >
-      <h1 className={`${styles.h1} text-slate-200`}>
+    <div className="flex justify-center flex-col items-center w-full min-h-screen bg-[#A5BFCC] p-6">
+      <h1 className="text-3xl font-bold text-[#134b70] mb-4">
         Create Your User Profile
       </h1>
 
       <form
         action={handleSubmit}
-        className="flex flex-col justify-center items-center border-2 border-solid border-gray-700 w-[70vh] p-3 rounded-lg"
+        className="flex flex-col justify-center items-center border-2 border-[#7E99A3] w-[70vh] p-6 rounded-lg bg-[#D1E2EB] shadow-lg"
       >
-        <label htmlFor="username">Username: </label>
+        <label htmlFor="username" className="text-[#134b70] font-semibold">
+          Username:
+        </label>
         <input
           type="text"
           name="username"
           id="username"
-          className="text-green-500 rounded-2xl h-10 p-4"
+          className="text-[#134b70] border border-[#7E99A3] bg-[#A5BFCC] rounded-2xl h-10 p-4 w-full focus:outline-none focus:border-[#508c9b]"
           required
         />
 
-        <label htmlFor="bio">About: </label>
+        <label htmlFor="bio" className="text-[#134b70] font-semibold mt-3">
+          About:
+        </label>
         <textarea
-          type="text"
           name="bio"
           id="bio"
           required
-          className="text-green-500 rounded-2xl h-28 p-4"
+          className="text-[#134b70] border border-[#7E99A3] bg-[#A5BFCC] rounded-2xl h-28 p-4 w-full focus:outline-none focus:border-[#508c9b]"
         />
 
-        <label htmlFor="profilepic">Profile Image URL: </label>
+        <label
+          htmlFor="profilepic"
+          className="text-[#134b70] font-semibold mt-3"
+        >
+          Profile Image URL:
+        </label>
         <textarea
-          type="text"
           name="profilepic"
           id="profilepic"
           required
-          className="text-green-500 rounded-2xl h-28 p-4"
+          className="text-[#134b70] border border-[#7E99A3] bg-[#A5BFCC] rounded-2xl h-28 p-4 w-full focus:outline-none focus:border-[#508c9b]"
         />
 
-        <label htmlFor="usertype">User Type: </label>
+        <label htmlFor="usertype" className="text-[#134b70] font-semibold mt-3">
+          User Type:
+        </label>
         <select
           name="usertype"
           id="usertype"
-          className="text-green-500 rounded-2xl h-10 w-[20vh] text-center"
+          className="text-[#134b70] border border-[#7E99A3] bg-[#A5BFCC] rounded-2xl h-10 w-full text-center focus:outline-none focus:border-[#508c9b]"
         >
           <option value="Instructor">Instructor</option>
           <option value="Learner">Learner</option>
@@ -78,7 +84,7 @@ export default async function CreateProfile({ params }) {
 
         <button
           type="submit"
-          className="bg-emerald-500 border-2 p-1 m-4 hover:bg-emerald-400 rounded-lg"
+          className="bg-[#134b70] text-white px-6 py-3 rounded-lg border-2 border-[#134b70] text-center mt-6 hover:bg-[#508c9b] hover:scale-105 transition duration-300"
         >
           save profile
         </button>

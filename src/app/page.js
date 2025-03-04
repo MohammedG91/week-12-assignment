@@ -80,6 +80,7 @@ export default async function Homepage() {
             </Link>
           </div>
         </div>
+
         {/* Community Section */}
         <div className="w-full max-w-2xl mt-12">
           <h2 className="text-3xl text-center font-semibold mb-4">

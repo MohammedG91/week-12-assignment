@@ -1,18 +1,28 @@
 import Link from "next/link";
+
 export default function Footer() {
   return (
-    <div id="section footer">
-      <div className="text-center py-4">
-        <Link href="/terms" className="btn btn-link">
-          Terms
-        </Link>
-        <span>|</span>
-        <Link href="/contact" className="btn btn-link">
-          Contact Us
-        </Link>
-
-        <p> Copyright © 2025, Local Skills Hub. All Rights Reserved.</p>
+    <footer className="w-full bg-[#4C585B] text-[#D1E2EB] py-6 ">
+      <div className="flex flex-col items-center space-y-2">
+        <div className="flex space-x-6 text-lg">
+          <Link
+            href="/terms"
+            className="hover:text-[#508c9b] transition duration-300"
+          >
+            Terms
+          </Link>
+          <span>|</span>
+          <Link
+            href="/contact"
+            className="hover:text-[#508c9b] transition duration-300"
+          >
+            Contact Us
+          </Link>
+        </div>
+        <p className="text-sm text-[#A5BFCC]">
+          Copyright © 2025, Local Skills Hub. All Rights Reserved.
+        </p>
       </div>
-    </div>
+    </footer>
   );
 }

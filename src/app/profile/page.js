@@ -23,7 +23,7 @@ export default async function Profile() {
 
         <Link
           href={`/profile/${id}/createprofile`}
-          className="text-black-500 hover:bg-green-500 w-[30vh] mt-6 p-1 rounded-md border-2 bg-emerald-300 text-center"
+          className="bg-[#134b70] text-white px-6 py-3 rounded-lg border-2 border-[#134b70] text-center hover:bg-[#508c9b] hover:scale-105 transition duration-300"
         >
           Create Profile.
         </Link>
