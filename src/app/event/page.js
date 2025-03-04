@@ -73,7 +73,7 @@ export default async function EventsPage() {
               >
                 <Link
                   href={`/event/${event.id}`}
-                  className="text-white hover:text-[#124e66] text-xl"
+                  className="text-white text-xl"
                 >
                   {event.eventname}
                 </Link>

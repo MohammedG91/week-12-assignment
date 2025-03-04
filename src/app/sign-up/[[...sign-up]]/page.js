@@ -4,14 +4,16 @@ import { SignUp } from "@clerk/nextjs";
 
 export default function SignUpPage() {
   return (
-    <>
-      <div
-        className={`antialiased grid grid-rows-[minmax(1rem, auto)_1fr_minmax(1rem, auto)] items-center justify-items-center w-full p-0 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-      >
-        <h1>Welcome to The local skill hub!</h1>
-        <h2>Sign up, please, new user!</h2>
+    <div className="min-h-screen w-full bg-[#A5BFCC] flex items-center justify-center">
+      <div className="w-full max-w-md bg-[#D1E2EB] p-8 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center text-[#134b70] mb-4">
+          Welcome to The Local Skills Hub!
+        </h1>
+        <h2 className="text-xl text-center text-[#508c9b] mb-6">
+          Sign up, please, new user!
+        </h2>
         <SignUp />
       </div>
-    </>
+    </div>
   );
 }
