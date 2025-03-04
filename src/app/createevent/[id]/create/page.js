@@ -170,7 +170,12 @@ export default async function createEvent({ params }) {
             </label>
           </div>
 
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="bg-emerald-500 border-2 p-1 m-4 hover:bg-emerald-400 rounded-lg"
+          >
+            Submit
+          </button>
         </form>
       </section>
     </>
