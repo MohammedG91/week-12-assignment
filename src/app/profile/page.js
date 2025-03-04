@@ -48,53 +48,52 @@ export default async function Profile() {
             style={{ objectFit: "contain" }}
             className="rounded-full"
           />
-          <h2
-            className={`${profilestyle.h2} text-xl font-semibold text-emerald-700`}
-          >
+          <h1 className="text-4xl text-[#124e66] mb-6">
             {wrangledUser.username}
-          </h2>
+          </h1>
         </aside>
 
         <article className="w-2/3 flex-1">
-          <h2 className={`${profilestyle.h2} text-gray-800`}>About:</h2>
+          <h1 className="text-2xl text-[#124e66] mb-6">About:</h1>
           <p className="text-gray-600 mt-2">{wrangledUser.bio}</p>
           <br />
-          <h2 className={`${profilestyle.h2} text-gray-800`}>
+          <h2 className={`${profilestyle.h2} text-[#124e66] `}>
             Manage your profile settings here.
           </h2>
           <nav className="flex items-center justify-center p-2 gap-3">
             <Link
               href={`/profile/${id}/update`}
-              className="text-emerald-500 hover:bg-emerald-200 w-full mt-6 p-1 rounded-md border-2 bg-white text-center"
+              className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full"
             >
               Update Profile
             </Link>
 
             <Link
               href={`/profile/${id}/delete`}
-              className="w-full hover:bg-red-500 mt-6 p-1 text-gray-800 rounded-md border-2 bg-red-300"
+              className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] transition duration-300 w-full"
             >
               Delete Profile
             </Link>
           </nav>
 
-          <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
-          <br />
-          <Link
-            href={`/createevent/${personalid}/create`}
-            className="text-emerald-500 hover:text-blue-700 w-[10rem] mt-6 p-1 rounded-md border-2 bg-white text-center"
-          >
-            Create Event
-          </Link>
+          <h2 className={`${profilestyle.h2} text-[#124e66]`}>
+            Create an Event or a Community Post
+          </h2>
 
-          <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
-          <br />
-          <Link
-            href={`/createcommunitypost/${personalid}/create`}
-            className="text-emerald-500 hover:text-blue-700 w-[10rem] mt-6 p-1 rounded-md border-2 bg-white text-center"
-          >
-            Create community post
-          </Link>
+          <nav className="flex items-center justify-center p-2 gap-3">
+            <Link
+              href={`/createevent/${personalid}/create`}
+              className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full"
+            >
+              Create Event
+            </Link>
+            <Link
+              href={`/createcommunitypost/${personalid}/create`}
+              className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full"
+            >
+              Create community post
+            </Link>
+          </nav>
         </article>
       </section>
 
