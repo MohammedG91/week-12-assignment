@@ -38,10 +38,16 @@ export default async function EventPage({ params }) {
         />
         <p className="mt-4">{event.description}</p>
         <p>
-          <strong>Date:</strong> {event.eventdate}
+          <strong>Date:</strong>{" "}
+          {event.eventdate
+            ? new Date(event.eventdate).toLocaleDateString() // Formatting DATE type
+            : "N/A"}
         </p>
         <p>
-          <strong>Time:</strong> {event.eventtime}
+          <strong>Time:</strong>{" "}
+          {event.eventtime
+            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString() // Formatting TIME type
+            : "N/A"}
         </p>
         <p>
           <strong>Location:</strong> {event.location}
