@@ -70,5 +70,11 @@ CREATE TABLE community_posts (
     createdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- Contact Table
+CREATE TABLE contact(
+id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+username VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+message TEXT
+)
 
