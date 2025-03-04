@@ -94,3 +94,5 @@ Logo (Left)
 Menu Items (Right): Home | About Us | Events | Host an Event | Profile
 Footer (Visible on All Pages):
 Contact Us | Terms & Conditions | Social Media Links
+ 
+

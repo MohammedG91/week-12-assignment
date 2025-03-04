@@ -69,3 +69,6 @@ CREATE TABLE community_posts (
     category_id INT REFERENCES event_categories(id),
     createdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+
