@@ -72,8 +72,8 @@ export default async function CreateProfile({ params }) {
           id="usertype"
           className="text-green-500 rounded-2xl h-10 w-[20vh] text-center"
         >
-          <option value="user">Instructor</option>
-          <option value="admin">Learner</option>
+          <option value="Instructor">Instructor</option>
+          <option value="Learner">Learner</option>
         </select>
 
         <button
