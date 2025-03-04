@@ -1,12 +1,12 @@
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { db } from "@/utils/dbConnection";
-import profilestyle from "../style.module.css";
 
 export default async function createEvent({ params }) {
   const user = await params;
 
-  const categories = await db.query(`SELECT * FROM event_categories`);
+  // Ensuring categories is an array
+  const categories = (await db.query(`SELECT * FROM event_categories`)).rows;
 
   async function handleSubmit(formData) {
     "use server";
@@ -21,7 +21,7 @@ export default async function createEvent({ params }) {
     const price = formData.get("price");
     const maxattendees = formData.get("maxattendees");
     const imageurl = formData.get("imageurl");
-    const ispublic = formData.get("ispublic") === "on";
+    const ispublic = formData.get("ispublic") === "true";
     const createdate = new Date().toISOString();
 
     await db.query(
@@ -53,7 +53,7 @@ export default async function createEvent({ params }) {
       <section
         className={`flex justify-center flex-col items-center w-full m-6 bg-slate-300 p-6 rounded-3xl`}
       >
-        <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
+        <h2 className={` text-black`}>Create Event</h2>
         <form
           action={handleSubmit}
           className="flex flex-col justify-center items-center border-2 border-solid border-gray-700 w-[70vh] p-3 rounded-lg"
@@ -80,7 +80,7 @@ export default async function createEvent({ params }) {
           <select
             id="category"
             name="selectedCategoryId"
-            className="text-green-500 rounded-2xl h-10 p-4"
+            className="text-green-500 rounded-2xl h-15 p-4"
             required
           >
             <option value="">--Select a Category--</option>
@@ -145,13 +145,28 @@ export default async function createEvent({ params }) {
             required
           />
 
-          <label htmlFor="ispublic">Is Public: </label>
-          <input
-            type="checkbox"
-            name="ispublic"
-            id="ispublic"
-            className="text-green-500 rounded-2xl"
-          />
+          <label htmlFor="ispublic">Event Visibility: </label>
+          <div className="flex items-center space-x-4">
+            <label>
+              <input
+                type="radio"
+                name="ispublic"
+                value="true"
+                className="text-green-500 rounded-2xl"
+                defaultChecked
+              />
+              Public
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="ispublic"
+                value="false"
+                className="text-green-500 rounded-2xl"
+              />
+              Private
+            </label>
+          </div>
 
           <button type="submit">Submit</button>
         </form>
