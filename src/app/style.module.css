@@ -15,8 +15,8 @@
 }
 
 .section {
-  background-image: url("https://www.pngmagic.com/product_images/beautiful-ultra-hd-nature-backgrounds-featuring-green-landscapes_3X2.jpeg");
-  min-height: 50vh;
+  background-image: url("https://img.freepik.com/free-vector/paper-style-smooth-background_23-2148968643.jpg");
+  min-height: 30vh;
   min-width: 80vh;
   background-repeat: no-repeat;
   background-blend-mode: darken;
@@ -39,7 +39,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(177, 177, 177, 0.151);
+  background: rgba(131, 131, 131, 0.419);
   border-radius: 1rem;
   z-index: -1;
 }

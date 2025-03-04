@@ -37,7 +37,7 @@ export default async function Profile() {
   return (
     <>
       <section
-        className={`${profilestyle.section} flex justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
+        className={`${profilestyle.section} flex justify-center items-center w-full m-h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
         <h1 className={`${profilestyle.h1} text-lg`}>Welcome {username}!</h1>
 
@@ -59,6 +59,18 @@ export default async function Profile() {
             Delete Profile
           </Link>
         </nav>
+        <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
+        <Link
+          href={`/createevent/${personalid}/create`}
+          className="text-emerald-500 hover:text-blue-700 w-full mt-6 p-1 rounded-md border-2 bg-white text-center"
+        >
+          create event
+        </Link>
+      </section>
+      <section
+        className={`${profilestyle.section} flex justify-center items-center w-full h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
+      >
+        <h2 className={`${profilestyle.h2} text-black`}>All Events</h2>
       </section>
     </>
   );
