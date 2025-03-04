@@ -86,6 +86,15 @@ export default async function Profile() {
           >
             Create Event
           </Link>
+
+          <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
+          <br />
+          <Link
+            href={`/createcommunitypost/${personalid}/create`}
+            className="text-emerald-500 hover:text-blue-700 w-[10rem] mt-6 p-1 rounded-md border-2 bg-white text-center"
+          >
+            Create community post
+          </Link>
         </article>
       </section>
 
