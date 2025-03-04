@@ -67,5 +67,5 @@ CREATE TABLE community_posts (
     content TEXT NOT NULL,
     posttype VARCHAR(255) NOT NULL,
     category_id INT REFERENCES event_categories(id),
-    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    createdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
