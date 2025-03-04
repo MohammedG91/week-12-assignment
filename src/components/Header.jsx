@@ -21,6 +21,9 @@ export default function Header() {
           <h1 className="text-lg text-[#D1E2EB] hover:text-[#508c9b] transition duration-300">
             <Link href="/event">Events</Link>
           </h1>
+          <h1 className="text-lg text-[#D1E2EB] hover:text-[#508c9b] transition duration-300">
+            <Link href="/about">About us</Link>
+          </h1>
         </nav>
       </div>
 
