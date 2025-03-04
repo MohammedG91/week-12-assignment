@@ -11,7 +11,7 @@ export default function Footer() {
           Contact Us
         </Link>
 
-        <p> Copyright 2025, Local Skills Hub. All Rights Reserved.</p>
+        <p> Copyright © 2025, Local Skills Hub. All Rights Reserved.</p>
       </div>
     </div>
   );
