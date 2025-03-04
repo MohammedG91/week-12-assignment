@@ -28,7 +28,7 @@ CREATE TABLE events (
     location VARCHAR(255),
     price DECIMAL(10, 2),
     maxattendees INT,
-    imageurl VARCHAR(255),
+    imageurl Text,
     ispublic BOOLEAN DEFAULT TRUE,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
