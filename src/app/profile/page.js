@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { db } from "@/utils/dbConnection";
 import profilestyle from "../style.module.css";
-
+import Image from "next/image";
 export default async function Profile() {
   const { userId } = await auth();
 
@@ -31,42 +31,65 @@ export default async function Profile() {
     );
   }
 
-  const username = user.rows[0].username;
+  const wrangledUser = user.rows[0];
   const personalid = user.rows[0].id;
 
   return (
     <>
       <section
-        className={`${profilestyle.section} flex justify-center items-center w-full m-h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
+        className={`${profilestyle.section} flex  w-full m-h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
-        <h1 className={`${profilestyle.h1} text-lg`}>Welcome {username}!</h1>
-
-        <h2 className={`${profilestyle.h2} text-black`}>
-          Manage your profile settings here.
-        </h2>
-        <nav className="flex items-center justify-center p-2 gap-3">
-          <Link
-            href={`/profile/${id}/update`}
-            className="text-emerald-500 hover:text-blue-700 w-full mt-6 p-1 rounded-md border-2 bg-white text-center"
+        <aside className="w-1/3 flex justify-center items-center gap-2">
+          <Image
+            src={wrangledUser.profilepic}
+            alt="User profile image"
+            width={300}
+            height={300}
+            style={{ objectFit: "contain" }}
+            className="rounded-full"
+          />
+          <h2
+            className={`${profilestyle.h2} text-xl font-semibold text-emerald-700`}
           >
-            Update Profile
-          </Link>
+            {wrangledUser.username}
+          </h2>
+        </aside>
 
+        <article className="w-2/3 flex-1">
+          <h2 className={`${profilestyle.h2} text-gray-800`}>About:</h2>
+          <p className="text-gray-600 mt-2">{wrangledUser.bio}</p>
+          <br />
+          <h2 className={`${profilestyle.h2} text-gray-800`}>
+            Manage your profile settings here.
+          </h2>
+          <nav className="flex items-center justify-center p-2 gap-3">
+            <Link
+              href={`/profile/${id}/update`}
+              className="text-emerald-500 hover:bg-emerald-200 w-full mt-6 p-1 rounded-md border-2 bg-white text-center"
+            >
+              Update Profile
+            </Link>
+
+            <Link
+              href={`/profile/${id}/delete`}
+              className="w-full hover:bg-red-500 mt-6 p-1 text-gray-800 rounded-md border-2 bg-red-300"
+            >
+              Delete Profile
+            </Link>
+          </nav>
+
+          <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
+          <br />
           <Link
-            href={`/profile/${id}/delete`}
-            className="w-full hover:bg-red-500 mt-6 p-1 text-gray-800 rounded-md border-2 bg-red-300"
+            href={`/createevent/${personalid}/create`}
+            className="text-emerald-500 hover:text-blue-700 w-[10rem] mt-6 p-1 rounded-md border-2 bg-white text-center"
           >
-            Delete Profile
+            Create Event
           </Link>
-        </nav>
-        <h2 className={`${profilestyle.h2} text-black`}>Create Event</h2>
-        <Link
-          href={`/createevent/${personalid}/create`}
-          className="text-emerald-500 hover:text-blue-700 w-full mt-6 p-1 rounded-md border-2 bg-white text-center"
-        >
-          create event
-        </Link>
+        </article>
       </section>
+
+      {/* 2nd section with all events */}
       <section
         className={`${profilestyle.section} flex justify-center items-center w-full h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
