@@ -1,20 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
+import { db } from "@/utils/dbConnection";
 
 export const metadata = {
   title: "Local Skills Hub",
   description: "Connect, learn, and share skills within your local community.",
 };
 
-export default function Homepage() {
+export default async function Homepage() {
+  const events = await db.query(
+    "SELECT * FROM events WHERE ispublic = true ORDER BY eventdate LIMIT 4"
+  );
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
       <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
         <Image
           src="/logo/logo.png"
           alt="Local Skills Hub"
-          width={120}
-          height={50}
+          width={320}
+          height={150}
           className="rounded-lg"
         />
 
@@ -30,29 +35,46 @@ export default function Homepage() {
             className="w-full p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC]"
           />
         </div>
-        {/* Events Section */}
-        <div className="w-full max-w-2xl mt-8">
-          <h2 className="text-3xl font-semibold mb-4">Upcoming Events</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link
-              href="/events/photography-workshop"
-              className="bg-[#134b70] text-white p-6 rounded-lg hover:bg-[#508c9b] transition duration-300"
-            >
-              Photography Workshop
-            </Link>
+        {/* Events carousel */}
+        <div className="w-full max-w-5xl mt-8">
+          <h2 className="text-3xl font-semibold text-center mb-6">
+            Upcoming Events
+          </h2>
 
-            <Link
-              href="/events/coding-bootcamp"
-              className="bg-[#134b70] text-white p-6 rounded-lg hover:bg-[#508c9b] transition duration-300"
-            >
-              Coding Bootcamp
-            </Link>
-            {/* More events here */}
+          <div className="flex justify-center space-x-4">
+            {events.rows?.map((event) => (
+              <div
+                key={event.id}
+                className="bg-[#3b4b57] p-6 shadow-lg rounded-xl overflow-hidden w-[250px] h-[320px] flex flex-col hover:scale-105 transition-transform duration-100"
+              >
+                <div className="relative w-full h-[150px]">
+                  <Image
+                    src={event.imageurl || "/default-event.jpg"}
+                    alt={event.eventname}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className="text-lg font-semibold text-white">
+                    {event.eventname}
+                  </h3>
+
+                  <Link
+                    href={`/event/${event.id}`}
+                    className="mt-auto px-4 py-2 bg-[#124e66] text-white rounded-lg text-center block hover:bg-[#508c9b] hover:scale-105 transition duration-300 inline-block"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="mt-4 text-center">
+          <div className="mt-7 flex justify-center">
             <Link
               href="/events"
-              className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] transition duration-300"
+              className=" px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
             >
               View All Events
             </Link>
@@ -60,7 +82,9 @@ export default function Homepage() {
         </div>
         {/* Community Section */}
         <div className="w-full max-w-2xl mt-12">
-          <h2 className="text-3xl font-semibold mb-4">Join Our Community</h2>
+          <h2 className="text-3xl text-center font-semibold mb-4">
+            Join Our Community
+          </h2>
           <p className="text-lg text-center mb-6">
             Meet like-minded people, share your skills, and grow together in our
             vibrant community.
@@ -69,10 +93,10 @@ export default function Homepage() {
             {" "}
             Comments section for community
           </p>
-          <div className="text-center">
+          <div className="flex justify-center">
             <Link
               href="/community"
-              className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] transition duration-300"
+              className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
             >
               Join the Community
             </Link>

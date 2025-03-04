@@ -6,12 +6,20 @@ import {
   SignUpButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="flex justify-between items-center w-full bg-[#4C585B] p-6 shadow-lg">
       <div className="flex items-center space-x-6">
-        <h1 className="text-2xl font-bold text-[#D1E2EB]">
+        <Image
+          src="/logo/header-logo.png"
+          alt="Local Skills Hub"
+          width={100}
+          height={30}
+          className="rounded-lg"
+        />
+        <h1 className="text-2xl font-bold text-[#D1E2EB] hover:text-[#508c9b] hover:scale-105 transition duration-300">
           <Link href="/">Local Skills Hub</Link>
         </h1>
         <nav className="flex space-x-6">
@@ -31,10 +39,10 @@ export default function Header() {
       <aside className="flex items-center space-x-4">
         <SignedOut>
           <div className="flex space-x-4">
-            <SignInButton className="bg-[#134b70] text-white px-6 py-3 rounded-lg hover:bg-[#508c9b] transition duration-300 cursor-pointer">
+            <SignInButton className="bg-[#134b70] text-white px-6 py-3 rounded-lg hover:bg-[#508c9b] hover:scale-105 transition duration-300 cursor-pointer">
               Sign In
             </SignInButton>
-            <SignUpButton className="bg-[#134b70] text-white px-6 py-3 rounded-lg hover:bg-[#508c9b] transition duration-300 cursor-pointer">
+            <SignUpButton className="bg-[#134b70] text-white px-6 py-3 rounded-lg hover:bg-[#508c9b] hover:scale-105 transition duration-300 cursor-pointer">
               Sign Up
             </SignUpButton>
           </div>
