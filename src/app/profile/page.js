@@ -34,6 +34,11 @@ export default async function Profile() {
   const wrangledUser = user.rows[0];
   const personalid = user.rows[0].id;
 
+  const userevent = await db.query(
+    `SELECT * FROM events WHERE userid = $1 ORDER BY id DESC`,
+    [personalid]
+  );
+
   return (
     <>
       <section
@@ -82,7 +87,7 @@ export default async function Profile() {
 
           <nav className="flex items-center justify-center p-2 gap-3">
             <Link
-              href={`/createevent/${personalid}/create`}
+              href={`/createEvent/${personalid}/create`}
               className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full"
             >
               Create Event
@@ -99,9 +104,40 @@ export default async function Profile() {
 
       {/* 2nd section with all events */}
       <section
-        className={`${profilestyle.section} flex justify-center items-center w-full h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
+        className={`${profilestyle.section} flex justify-center items-center w-full m-h-[30vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
-        <h2 className={`${profilestyle.h2} text-black`}>All Events</h2>
+        <h2 className={`${profilestyle.h2} text-black`}>Your Events</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {userevent.rows.length === 0 ? (
+            <div>you have not made any event yet!</div>
+          ) : (
+            userevent.rows.map((event) => (
+              <div
+                key={event.id}
+                className="overflow-hidden rounded-lg shadow-lg p-4 bg-white text-black"
+              >
+                <ul className="list-disc pl-5 mb-4">
+                  <li className="font-semibold text-xl">{event.eventname}</li>
+                </ul>
+
+                <nav className="flex items-center justify-between gap-3">
+                  <Link href={`/createEvent/${event.id}/update`}>
+                    <button className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full">
+                      Update event
+                    </button>
+                  </Link>
+
+                  <Link href={`/createEvent/${event.id}/delete`}>
+                    <button className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] transition duration-300 w-full">
+                      Delete event
+                    </button>
+                  </Link>
+                </nav>
+              </div>
+            ))
+          )}
+        </div>
       </section>
     </>
   );
