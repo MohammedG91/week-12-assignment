@@ -28,7 +28,7 @@ export default async function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
       <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
-        {/* Single event carousel */}
+        {/* Events carousel */}
         <div className="w-full max-w-3xl mb-8">
           <h2 className="text-3xl font-semibold text-center mb-4">
             Featured Events
