@@ -3,11 +3,11 @@ export default function Footer() {
   return (
     <div id="section footer">
       <div className="text-center py-4">
-        <Link href="/terms" target="_blank" className="btn btn-link">
+        <Link href="/terms" className="btn btn-link">
           Terms
         </Link>
         <span>|</span>
-        <Link href="/contact" target="_blank" className="btn btn-link">
+        <Link href="/contact" className="btn btn-link">
           Contact Us
         </Link>
 
