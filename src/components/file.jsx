@@ -15,7 +15,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
-import Image from "next/image";
 import {
   SignInButton,
   SignedIn,
@@ -25,7 +24,7 @@ import {
 } from "@clerk/nextjs";
 
 const pages = [
-  { name: "Homepage", link: "/" },
+  { name: "HomePage", link: "/" },
   { name: "About Us", link: "/about" },
   { name: "Events", link: "/event" },
   { name: "Profile", link: "/profile" },
@@ -56,27 +55,25 @@ export default function ResponsiveAppBar() {
           <Image
             src="/logo/header-logo.png"
             alt="Local Skills Hub"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
             className="rounded-lg object-cover hidden md:flex mr-1"
           />
-
           <Typography
             variant="h6"
             noWrap
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: " Arial, Helvetica, sans-serif",
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".1rem",
+              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
             Local Skills Hub
           </Typography>
-
           {/* Responsive Menu for smaller screens */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -120,15 +117,13 @@ export default function ResponsiveAppBar() {
           </Box>
 
           {/* Logo or App Name */}
-
           <Image
             src="/logo/header-logo.png"
             alt="Local Skills Hub"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
             className="rounded-lg object-cover flex md:hidden mr-1"
           />
-
           <Typography
             variant="h5"
             noWrap
@@ -137,10 +132,9 @@ export default function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-
-              fontFamily: " Arial, Helvetica, sans-serif",
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".1rem",
+              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -175,10 +169,9 @@ export default function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Actions">
               <SignedOut>
-                <SignInButton className="bg-[#134b70] text-white px-4 py-2 rounded-lg hover:bg-[#508c9b] hover:scale-105 transition duration-300 cursor-pointer m-3">
+                <SignInButton className="bg-[#134b70] text-white px-4 py-2 rounded-lg hover:bg-[#508c9b] hover:scale-105 transition duration-300 cursor-pointer">
                   Sign In
                 </SignInButton>
-
                 <SignUpButton className="bg-[#134b70] text-white px-4 py-2 rounded-lg hover:bg-[#508c9b] hover:scale-105 transition duration-300 cursor-pointer">
                   Sign Up
                 </SignUpButton>
