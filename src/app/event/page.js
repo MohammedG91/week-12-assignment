@@ -2,6 +2,7 @@ import { db } from "@/utils/dbConnection";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
 export const metadata = {
   title: "Events & Workshops",
@@ -9,6 +10,14 @@ export const metadata = {
 };
 
 export default async function EventsPage() {
+  const { userId } = await auth();
+
+  const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
+    userId,
+  ]);
+
+  const personalid = user.rows.length > 0 ? user.rows[0].id : null;
+
   const events = await db.query(
     "SELECT * FROM events WHERE ispublic = true ORDER BY eventdate LIMIT 5"
   );
@@ -27,6 +36,11 @@ export default async function EventsPage() {
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
+      <input
+        type="text"
+        placeholder="Search for skills or events..."
+        className="w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC] absolute top-28 right-4"
+      />
       <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
         {/* Events carousel */}
         <div className="w-full max-w-3xl mb-8">
@@ -81,6 +95,18 @@ export default async function EventsPage() {
             ))}
           </ul>
         </div>
+
+        {/* Create event button */}
+        {userId && (
+          <div className="mt-6">
+            <Link
+              href={`/createEvent/${personalid}/create`}
+              className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300"
+            >
+              Create Event
+            </Link>
+          </div>
+        )}
       </main>
     </div>
   );
