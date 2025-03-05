@@ -54,6 +54,13 @@ export default async function EventPage({ params }) {
     redirect(`/event/${id}`);
   }
 
+  // fetch comment
+  const comments = await db.query(`SELECT * FROM comments WHERE eventid = $1`, [
+    id,
+  ]);
+
+  const wrangledComments = comments.rows;
+
   return (
     <div className="min-h-screen p-8 bg-[#A5BFCC] text-[#134b70]">
       <h1 className="text-4xl text-[#124e66] mb-6">{event.eventname}</h1>
@@ -125,6 +132,21 @@ export default async function EventPage({ params }) {
           </button>
         </fieldset>
       </form>
+
+      <div className="mt-8 p-6 bg-[#aabac3]  rounded-lg shadow-lg">
+        {wrangledComments.length > 0 ? (
+          wrangledComments.map((comment) => (
+            <div
+              key={comment.id}
+              className="bg-[#A5BFCC]  p-4 rounded-lg shadow-sm mb-4 hover:shadow-md transition-shadow duration-200"
+            >
+              <p className="text-[#134b70]text-base">{comment.comment}</p>
+            </div>
+          ))
+        ) : (
+          <p>No comments yet. Be the first to comment!</p>
+        )}
+      </div>
     </div>
   );
 }
