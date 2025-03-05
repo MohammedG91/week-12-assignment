@@ -65,7 +65,11 @@ export default async function EventPage({ params }) {
   const wrangledComments = comments.rows;
 
   return (
-    <div className="min-h-screen p-8 bg-[#A5BFCC] text-[#134b70]">
+    <div
+      className="min-h-screen p-8 bg-[#A5BFCC] text-[#134b70] 
+     sm:p-1 md:p-2 lg:p-12 xl:p-16 
+      flex flex-col items-center justify-center w-full m-0 sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none"
+    >
       <h1 className="text-4xl text-[#124e66] mb-6">{event.eventname}</h1>
       <div className="flex flex-col items-center">
         <Image
@@ -136,7 +140,7 @@ export default async function EventPage({ params }) {
         </fieldset>
       </form>
 
-      <div className="mt-8 p-6 bg-[#aabac3]  rounded-lg shadow-lg">
+      <div className="mt-8 p-6 bg-[#aabac3]  rounded-lg shadow-lg w-full">
         {wrangledComments.length > 0 ? (
           wrangledComments.map((comment) => (
             <div
