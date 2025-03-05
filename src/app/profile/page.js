@@ -17,9 +17,9 @@ export default async function Profile() {
       <section
         className={`${profilestyle.section} flex justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
       >
-        <h1 className={`${profilestyle.h1} `}>
+        <h2 className={`${profilestyle.h2} text-[#124e66] `}>
           Welcome! Please create your profile to get started
-        </h1>
+        </h2>
 
         <Link
           href={`/profile/${id}/createprofile`}
