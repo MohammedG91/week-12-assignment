@@ -140,9 +140,15 @@ export default function ResponsiveAppBar() {
 
               fontFamily: " Arial, Helvetica, sans-serif",
               fontWeight: 700,
-              letterSpacing: ".1rem",
+              letterSpacing: { xs: ".05rem", sm: ".1rem", md: ".1rem" },
               color: "inherit",
               textDecoration: "none",
+              fontSize: {
+                xs: "1rem",
+                sm: "1.5rem",
+                md: "2rem",
+                lg: "2.2rem",
+              },
             }}
           >
             Local Skills Hub
