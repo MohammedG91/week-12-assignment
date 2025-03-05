@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { db } from "@/utils/dbConnection";
-import profilestyle from "../style.module.css";
 import Image from "next/image";
 
 export default async function Profile() {
@@ -14,18 +13,16 @@ export default async function Profile() {
   // showing this when user doesn't have profile
   if (!user.rows.length) {
     return (
-      <section
-        className={`${profilestyle.section} flex justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-white`}
-      >
-        <h2 className={`${profilestyle.h2} text-[#124e66]`}>
+      <section className="flex flex-col justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-[#4C585B] text-[#D1E2EB]">
+        <h2 className="text-2xl">
           Welcome! Please create your profile to get started
         </h2>
 
         <Link
           href={`/profile/${id}/createprofile`}
-          className="bg-[#134b70] text-white px-6 py-3 rounded-lg border-2 border-[#134b70] text-center hover:bg-[#508c9b] hover:scale-105 transition duration-300"
+          className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
         >
-          Create Profile.
+          Create Profile
         </Link>
       </section>
     );
@@ -40,109 +37,105 @@ export default async function Profile() {
   );
 
   return (
-    <>
-      <section className=" min-h-screen m-0 bg-[#A5BFCC] text-[#134b70]  sm:p-4 md:p-2 lg:p-12 xl:p-16 flex flex-col items-center justify-center w-full  sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none">
-        <section
-          className={`${profilestyle.section} flex flex-col sm:flex-row w-full p-6 rounded-lg shadow-lg bg-white gap-6`}
-        >
-          <aside className="w-full sm:w-1/3 flex justify-center items-center gap-4">
-            <Image
-              src={wrangledUser.profilepic}
-              alt="User profile image"
-              width={300}
-              height={300}
-              style={{ objectFit: "contain" }}
-              className="rounded-full"
-            />
-            <h1 className="text-3xl sm:text-4xl text-[#124e66] mb-4 sm:mb-6">
-              {wrangledUser.username}
-            </h1>
-          </aside>
+    <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC] p-10">
+      {/* Profile Section */}
+      <section className="flex flex-col w-full max-w-6xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-8">
+        <aside className="flex flex-col justify-center items-center gap-4 w-full">
+          <Image
+            src={wrangledUser.profilepic}
+            alt="User profile image"
+            width={150}
+            height={150}
+            className="rounded-full border-4 border-[#508c9b] shadow-md"
+            style={{ objectFit: "cover" }}
+          />
+          <h1 className="text-4xl font-semibold">{wrangledUser.username}</h1>
+        </aside>
 
-          <article className="w-full sm:w-2/3 flex-1">
-            <h1 className="text-xl sm:text-2xl text-[#124e66] mb-4">About:</h1>
-            <p className="text-gray-600 mt-2">{wrangledUser.bio}</p>
+        <article className="w-full text-center">
+          <h1 className="text-2xl font-semibold mb-4">About:</h1>
+          <p className="text-[#A5BFCC] leading-relaxed">{wrangledUser.bio}</p>
 
-            <h2 className={`${profilestyle.h2} text-[#124e66] mt-6`}>
-              Manage your profile settings here.
-            </h2>
-            <nav className="flex flex-wrap items-center justify-start sm:justify-center gap-3 mt-4">
+          {/* Manage Profile */}
+          <div className="mt-6 space-y-4">
+            <h2 className="text-xl font-semibold">Manage Your Profile</h2>
+            <nav className="flex justify-center gap-4">
               <Link
                 href={`/profile/${id}/update`}
-                className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full sm:w-auto"
+                className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
               >
                 Update Profile
               </Link>
 
               <Link
                 href={`/profile/${id}/delete`}
-                className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] transition duration-300 w-full sm:w-auto"
+                className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] hover:scale-105 transition duration-300 inline-block"
               >
                 Delete Profile
               </Link>
             </nav>
+          </div>
 
-            <h2 className={`${profilestyle.h2} text-[#124e66] mt-6`}>
+          {/* Create Events or Posts */}
+          <div className="mt-6 space-y-4">
+            <h2 className="text-xl font-semibold">
               Create an Event or a Community Post
             </h2>
-
-            <nav className="flex flex-wrap items-center justify-start sm:justify-center gap-3 mt-4">
+            <nav className="flex justify-center gap-4">
               <Link
                 href={`/createEvent/${personalid}/create`}
-                className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full sm:w-auto"
+                className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
               >
                 Create Event
               </Link>
               <Link
                 href={`/createcommunitypost/${personalid}/create`}
-                className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full sm:w-auto"
+                className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
               >
                 Create Community Post
               </Link>
             </nav>
-          </article>
-        </section>
-
-        {/* 2nd section with all events */}
-        <section
-          className={`${profilestyle.section} flex justify-center items-center p-6 rounded-lg shadow-lg bg-white mt-8 w-full`}
-        >
-          <h2 className={`${profilestyle.h2} text-black mb-6`}>Your Events</h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {userevent.rows.length === 0 ? (
-              <div className="text-center text-xl">
-                You have not created any events yet!
-              </div>
-            ) : (
-              userevent.rows.map((event) => (
-                <div
-                  key={event.id}
-                  className="overflow-hidden rounded-lg shadow-lg p-4 bg-white text-black"
-                >
-                  <ul className="list-disc pl-5 mb-4">
-                    <li className="font-semibold text-xl">{event.eventname}</li>
-                  </ul>
-
-                  <nav className="flex flex-wrap items-center justify-center gap-3">
-                    <Link href={`/createEvent/${event.id}/update`}>
-                      <button className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300 w-full sm:w-auto">
-                        Update Event
-                      </button>
-                    </Link>
-
-                    <Link href={`/createEvent/${event.id}/delete`}>
-                      <button className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] transition duration-300 w-full sm:w-auto">
-                        Delete Event
-                      </button>
-                    </Link>
-                  </nav>
-                </div>
-              ))
-            )}
           </div>
-        </section>
+        </article>
       </section>
-    </>
+
+      {/* Events Section */}
+      <section className="flex flex-col w-full max-w-6xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-8 mt-6">
+        <h2 className="text-2xl font-semibold text-center">Your Events</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+          {userevent.rows.length === 0 ? (
+            <div className="text-center text-[#D1E2EB]">
+              You have not made any events yet!
+            </div>
+          ) : (
+            userevent.rows.map((event) => (
+              <div
+                key={event.id}
+                className="overflow-hidden rounded-lg shadow-md p-4 bg-[#A5BFCC] text-[#4C585B]"
+              >
+                <ul className="list-disc pl-5 mb-4">
+                  <li className="font-semibold text-xl">{event.eventname}</li>
+                </ul>
+
+                <nav className="flex items-center justify-between gap-3">
+                  <Link href={`/createEvent/${event.id}/update`}>
+                    <button className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block w-full">
+                      Update Event
+                    </button>
+                  </Link>
+
+                  <Link href={`/createEvent/${event.id}/delete`}>
+                    <button className="px-6 py-3 bg-[#733328] text-white rounded-lg hover:bg-[#9b5d50] hover:scale-105 transition duration-300 inline-block w-full">
+                      Delete Event
+                    </button>
+                  </Link>
+                </nav>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
+    </div>
   );
 }

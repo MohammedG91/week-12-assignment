@@ -63,7 +63,7 @@ export default async function Homepage() {
 
                   <Link
                     href={`/event/${event.id}`}
-                    className="mt-auto px-4 py-2 bg-[#124e66] text-white rounded-lg text-center block hover:bg-[#508c9b] hover:scale-105 transition duration-300 inline-block"
+                    className="mt-auto px-4 py-2 bg-[#124e66] text-white rounded-lg text-center hover:bg-[#508c9b] hover:scale-105 transition duration-300 inline-block"
                   >
                     View Details
                   </Link>
