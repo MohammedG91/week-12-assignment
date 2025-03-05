@@ -10,12 +10,14 @@ export default async function CreateEvent({ params }) {
     redirect("/sign-in");
   }
 
+  const user = await params;
+
   const categories = (await db.query(`SELECT * FROM event_categories`)).rows;
 
   async function handleSubmit(formData) {
     "use server";
 
-    const userid = userId;
+    const userid = user.id;
     const eventname = formData.get("eventname");
     const description = formData.get("description");
     const category_id = formData.get("selectedCategoryId");
