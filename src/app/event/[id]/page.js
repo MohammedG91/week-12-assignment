@@ -54,10 +54,13 @@ export default async function EventPage({ params }) {
     redirect(`/event/${id}`);
   }
 
-  // fetch comment
-  const comments = await db.query(`SELECT * FROM comments WHERE eventid = $1`, [
-    id,
-  ]);
+  // Fetch comments with username
+  const comments = await db.query(
+    `SELECT comments.*, users.username FROM comments
+     JOIN users ON comments.userid = users.id
+     WHERE comments.eventid = $1`,
+    [id]
+  );
 
   const wrangledComments = comments.rows;
 
@@ -140,7 +143,10 @@ export default async function EventPage({ params }) {
               key={comment.id}
               className="bg-[#A5BFCC]  p-4 rounded-lg shadow-sm mb-4 hover:shadow-md transition-shadow duration-200"
             >
-              <p className="text-[#134b70]text-base">{comment.comment}</p>
+              <h2 className="font-semibold text-[#124e66]">
+                {comment.username}
+              </h2>
+              <p className="text-[#134b70] text-base">{comment.comment}</p>
             </div>
           ))
         ) : (
