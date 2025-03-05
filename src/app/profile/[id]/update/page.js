@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import styles from "../../../style.module.css";
+
 export default async function updateProfile({ params }) {
   const slug = await params;
 
@@ -15,8 +16,7 @@ export default async function updateProfile({ params }) {
   async function handleUpdate(formData) {
     "use server";
 
-    //access the input value first
-
+    // Access the input values
     const username = formData.get("username");
     const bio = formData.get("bio");
     const profilepic = formData.get("profilepic");
@@ -34,65 +34,86 @@ export default async function updateProfile({ params }) {
 
   return (
     <>
-      <div
-        className={`${styles.section} flex justify-center flex-col items-center w-full m-6 bg-slate-300 p-6 rounded-3xl`}
-      >
-        <h1 className={`${styles.h1} text-slate-200`}>
-          Update Your User Profile
-        </h1>
+      <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC] p-10">
+        {/* Form Section */}
+        <section className="flex flex-col w-full max-w-4xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-8">
+          <h1 className="text-3xl text-center font-semibold mb-6">
+            Update Your Profile
+          </h1>
 
-        <form
-          action={handleUpdate}
-          className="flex flex-col justify-center items-center border-2 border-solid border-gray-700 w-[70vh] p-3 rounded-lg"
-        >
-          <label htmlFor="username">Username: </label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            defaultValue={wrangledUser.username}
-            className="text-green-500 rounded-2xl h-10 p-4"
-            required
-          />
-
-          <label htmlFor="bio">About: </label>
-          <textarea
-            type="text"
-            name="bio"
-            id="bio"
-            defaultValue={wrangledUser.bio}
-            required
-            className="text-green-500 rounded-2xl h-28 p-4"
-          />
-
-          <label htmlFor="profilepic">Profile Image URL: </label>
-          <textarea
-            type="text"
-            name="profilepic"
-            id="profilepic"
-            defaultValue={wrangledUser.profilepic}
-            required
-            className="text-green-500 rounded-2xl h-28 p-4"
-          />
-
-          <label htmlFor="usertype">User Type: </label>
-          <select
-            name="usertype"
-            id="usertype"
-            defaultValue={wrangledUser.usertype}
-            className="text-green-500 rounded-2xl h-10 w-[20vh] text-center"
+          <form
+            action={handleUpdate}
+            className="flex flex-col items-center w-full bg-[#4C585B] rounded-lg p-6 gap-6"
           >
-            <option value="Instructor">Instructor</option>
-            <option value="Learner">Learner</option>
-          </select>
+            {/* Username Field */}
+            <label htmlFor="username" className="text-lg mb-2">
+              Username:
+            </label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              defaultValue={wrangledUser.username}
+              className="text-[#4C585B] rounded-2xl h-10 p-4 mb-4 w-[80%] md:w-[60%]"
+              required
+            />
 
-          <button
-            type="submit"
-            className="bg-emerald-500 border-2 p-1 m-4 hover:bg-emerald-400 rounded-lg"
+            {/* Bio Field */}
+            <label htmlFor="bio" className="text-lg mb-2">
+              About:
+            </label>
+            <textarea
+              name="bio"
+              id="bio"
+              defaultValue={wrangledUser.bio}
+              required
+              className="text-[#4C585B] rounded-2xl h-28 p-4 mb-4 w-[80%] md:w-[60%]"
+            />
+
+            {/* Profile Image URL */}
+            <label htmlFor="profilepic" className="text-lg mb-2">
+              Profile Image URL:
+            </label>
+            <textarea
+              name="profilepic"
+              id="profilepic"
+              defaultValue={wrangledUser.profilepic}
+              required
+              className="text-[#4C585B] rounded-2xl h-28 p-4 mb-4 w-[80%] md:w-[60%]"
+            />
+
+            {/* User Type Select */}
+            <label htmlFor="usertype" className="text-lg mb-2">
+              User Type:
+            </label>
+            <select
+              name="usertype"
+              id="usertype"
+              defaultValue={wrangledUser.usertype}
+              className="text-[#4C585B] rounded-2xl h-10 w-[80%] md:w-[60%] text-center mb-4"
+            >
+              <option value="Instructor">Instructor</option>
+              <option value="Learner">Learner</option>
+            </select>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="bg-[#508c9b] text-white px-6 py-3 rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
+            >
+              UPDATE
+            </button>
+          </form>
+        </section>
+
+        <nav className="flex justify-center gap-4 mt-6">
+          <Link
+            href="/profile"
+            className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
           >
-            UPDATE
-          </button>
-        </form>
+            Back to Profile
+          </Link>
+        </nav>
       </div>
     </>
   );
