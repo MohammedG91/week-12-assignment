@@ -1,9 +1,12 @@
 import { db } from "@/utils/dbConnection";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function EventPage({ params }) {
-  const { id } = params;
+  const { id } = await params;
   const eventResult = await db.query(
     `
     SELECT events.*, event_categories.name AS category_name, users.username 
@@ -24,6 +27,32 @@ export default async function EventPage({ params }) {
     return <div className="text-center text-white mt-10">Event Not Found</div>;
 
   const event = eventResult.rows[0];
+
+  // comment part
+  // getting userid
+  const { userId } = await auth();
+
+  const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
+    userId,
+  ]);
+
+  const personalid = user.rows.length > 0 ? user.rows[0].id : null;
+
+  async function handleSubmit(formValues) {
+    "use server";
+
+    const eventid = id;
+    const comment = formValues.get("comment");
+    const userid = personalid;
+
+    await db.query(
+      `INSERT INTO comments (eventid,comment,userid) VALUES ($1, $2, $3)`,
+      [eventid, comment, userid]
+    );
+
+    revalidatePath(`/event/${id}`);
+    redirect(`/event/${id}`);
+  }
 
   return (
     <div className="min-h-screen p-8 bg-[#A5BFCC] text-[#134b70]">
@@ -70,6 +99,32 @@ export default async function EventPage({ params }) {
           RSVP
         </button>
       </div>
+      <form action={handleSubmit}>
+        <fieldset className="flex flex-col items-center border-spacing-1 border-2 border-gray-300 rounded-md w-full p-6">
+          <legend className="text-xl font-bold mb-4;">Comment:</legend>
+
+          <label
+            htmlFor="comment"
+            className="text-[#134b70] font-semibold mt-3"
+          >
+            Comment:
+          </label>
+          <textarea
+            id="comment"
+            name="comment"
+            required
+            className="text-[#134b70] border border-[#7E99A3] bg-[#d0d5d7] rounded-2xl h-28 p-4 w-full focus:outline-none focus:border-[#508c9b] m-2"
+            aria-labelledby="comment-label"
+          ></textarea>
+
+          <button
+            type="submit"
+            className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300"
+          >
+            Submit Comment
+          </button>
+        </fieldset>
+      </form>
     </div>
   );
 }
