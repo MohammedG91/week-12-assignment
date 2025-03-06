@@ -1,6 +1,4 @@
-# **Local Skills Hub**
-
----
+## **Local Skills Hub**
 
 Team members: Mohammed, Amina, Sita, Jae
 
@@ -68,49 +66,58 @@ _Stretch Goals_
 
 ---
 
-Wireframe: All wireframes are in planning folder.
+# **Wireframe**
 
-Used Radix, Motion, PG, MUI.
+Next.js – The primary framework for building the application with server-side rendering (SSR) and static site generation (SSG).
 
-Instructions on how to run your app: You can run the app by going to the url which is deployed on vercel which is. The url is week-12-assignment-weld.vercel.app.
+Radix UI – Accessible UI components for building custom interfaces.
 
-For developers who want to clone and work on the app, follow the instructions below:
+Framer Motion – Library for smooth animations and transitions.
 
-Instructions to Run the Local Skill Share App:
-Clone the repository:
-git clone <repository-url>
-cd <project-directory>
+PostgreSQL (PG) – Database for storing and managing data.
 
-Install dependencies:
-Make sure you have Node.js installed. Run the following command to install all necessary packages:
-npm install
-
-Set up environment variables:
-Create a .env file in the root directory and add your configuration details (e.g., API keys, database URL, Clerk API keys). Example:
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your clerk key>
-CLERK_SECRET_KEY=<your clerk secret key>
-NEXT_PUBLIC_DATABASE_URL=<your database url, copy the tables from the schema.sql file>
-
-Run the app:
-To run the server, use the following command:
-npm run dev
-
-Access the app:
-Open your web browser and go to:
-http://localhost:3000
-
-Log in:
-Use the Clerk authentication to log in to your account and start using the app.
+Material UI (MUI) – UI components for a consistent and responsive header design.
 
 ---
 
+# **Instructions on how to run your app**
+
+_Instructions for Users:_
+
+Visit the website to sign up, manage your profile, explore local events, connect with the community, and reach out to the team for any assistance.
+(week-12-assignment-weld.vercel.app.)
+
+_Instructios for developers:_
+
+1.  Fork the repository (check "copy the main branch only") and clone your fork to your local machine
+
+2.  Run npm install
+
+3.  Set up environment variables: Create a .env file in the root directory and add your configuration details (e.g., API keys, database URL, Clerk API keys). Example:
+
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your clerk key>
+    CLERK_SECRET_KEY=<your clerk secret key>
+    NEXT_PUBLIC_DATABASE_URL=<your database url, copy the tables from the schema.sql file>
+
+4.  Create the database schema by running the SQL commands in schema.sql in your database (eg. by running the commands in Supabase Query Editor)
+
+5.  Run npm run dev to start the development server
+
+6.  Open http://localhost:3000 with your browser to see the site
+
+7.  Log in: Use the Clerk authentication to log in to your account and start using the app.
+
 That’s it! You should now be able to access and use your Local Skill Share app locally
 
-Lighthouse report:
+---
 
-Reflections:
+# **Lighthouse report:**
+
+---
+
+# **Reflections:**
 
 Please mention the requirements you met and which goals you achieved for this assignment.
 
@@ -118,11 +125,22 @@ Please mention the requirements you met and which goals you achieved for this as
 
 🎯 If so, could you please tell us what was it that you found difficult about these tasks?
 
-What went really well and what could have gone better?
-Team collaboration went very well, we had 0 issues, and it went as good as it could have. Using git as the version control software went perfect, and not once did we have any issues or merge conflicts.
+🎯What went really well and what could have gone better?
 
-Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
-Describing errors or bugs you encountered while completing your assignment.
+    Team collaboration went very well, we had 0 issues, and it went as good as it could have. Using git as the version control software went perfect, and not once did we have any issues or merge conflicts.
 
-References:
+🎯Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
+
+🎯Describing errors or bugs you encountered while completing your assignment.
+
+---
+
+#**References:**
+
 Third-party APIs, CSS resets, icons, images...
+
+https://mui.com/material-ui/getting-started/installation/
+
+https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
