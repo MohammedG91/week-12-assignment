@@ -1,13 +1,14 @@
+export const metadata = {
+  title: "All Events - Local Skills Hub",
+  description:
+    "Explore a variety of events and workshops within your local community. Browse through upcoming events and learn new skills from other members.",
+};
+
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
-
-export const metadata = {
-  title: "Events & Workshops",
-  description: "Discover amazing events and workshops.",
-};
 
 export default async function EventsPage() {
   const { userId } = await auth();

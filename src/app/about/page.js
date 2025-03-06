@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "About Us - Local Skills Hub",
+  description:
+    "Learn more about the Local Skills Hub team. Discover the developers behind the platform and our mission to connect, learn, and share skills within local communities.",
+};
+
 import Image from "next/image";
 
 export default function About() {

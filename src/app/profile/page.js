@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Profile & Account Settings - Local Skills Hub",
+  description:
+    "Manage your account, update your profile, and view your shared events on Local Skills Hub. Connect with your community and enhance your skill-sharing experience.",
+};
+
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { db } from "@/utils/dbConnection";

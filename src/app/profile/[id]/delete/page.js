@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Delete Profile - Local Skills Hub",
+  description:
+    "Permanently delete your profile on Local Skills Hub. All your data, events, and interactions will be removed. Please proceed with caution.",
+};
+
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

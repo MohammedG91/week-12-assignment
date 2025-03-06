@@ -3,8 +3,9 @@ import Image from "next/image";
 import { db } from "@/utils/dbConnection";
 
 export const metadata = {
-  title: "Local Skills Hub",
-  description: "Connect, learn, and share skills within your local community.",
+  title: "Local Skills Hub - Homepage",
+  description:
+    "Welcome to Local Skills Hub! Connect with your community, explore events, share your skills, and engage in workshops to grow together.",
 };
 
 export default async function Homepage() {

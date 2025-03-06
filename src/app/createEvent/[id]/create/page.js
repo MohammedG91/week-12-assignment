@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Create Event - Local Skills Hub",
+  description:
+    "Create and share your event with your local community. Provide all the details and get others to join your event and enhance the local skill-sharing experience.",
+};
+
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { db } from "@/utils/dbConnection";
