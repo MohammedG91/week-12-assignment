@@ -63,6 +63,14 @@ export default async function CommunityPage() {
               <p className="mt-4 text-sm text-gray-500">
                 Posted on: {new Date(post.createdat).toLocaleString()}
               </p>
+              <div className="mt-4 text-right">
+                <Link
+                  href={`/community/${post.id}/delete`}
+                  className="text-[#9b6050] hover:text-[#702113] transition duration-300"
+                >
+                  Delete
+                </Link>
+              </div>
             </div>
           ))
         ) : (
