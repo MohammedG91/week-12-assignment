@@ -1,21 +1,16 @@
-export const metadata = {
-  title: "Event Details - Local Skills Hub",
-  description:
-    "Discover the details of this event, including description, schedule, and location. Join the conversation through comments and RSVP to attend the event within your community.",
-};
-
 import { db } from "@/utils/dbConnection";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function EventPage({ params }) {
   const { id } = await params;
   const eventResult = await db.query(
     `
-    SELECT events.*, event_categories.name AS category_name, users.username 
+    SELECT events.*, event_categories.name AS category_name, users.username, users.id AS creator_id
     FROM events 
     JOIN event_categories ON events.category_id = event_categories.id 
     JOIN users ON events.userid = users.id 
@@ -34,14 +29,17 @@ export default async function EventPage({ params }) {
 
   const event = eventResult.rows[0];
 
-  // comment part
-  // getting userid
+  // Fetch logged-in user information
   const { userId } = await auth();
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
+  // Determine if the logged-in user is the creator of the event
+  const isCreator = event.creator_id === personalid;
+
+  // Comment handling
   async function handleSubmit(formValues) {
     "use server";
 
@@ -70,7 +68,6 @@ export default async function EventPage({ params }) {
     redirect(`/event/${id}`);
   }
 
-  // Fetch comments with username
   const comments = await db.query(
     `SELECT comments.*, users.username FROM comments
      JOIN users ON comments.userid = users.id
@@ -81,11 +78,7 @@ export default async function EventPage({ params }) {
   const wrangledComments = comments.rows;
 
   return (
-    <div
-      className="min-h-screen p-8 bg-[#D1E2EB] text-[#134b70] 
-     sm:p-1 md:p-2 lg:p-12 xl:p-16 
-      flex flex-col items-center justify-center w-full m-0 sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none"
-    >
+    <div className="min-h-screen p-8 bg-[#D1E2EB] text-[#134b70]">
       <h1 className="text-4xl text-[#124e66] mb-6">{event.eventname}</h1>
       <div className="flex flex-col items-center">
         <Image
@@ -98,15 +91,11 @@ export default async function EventPage({ params }) {
         <p className="mt-4">{event.description}</p>
         <p>
           <strong>Date:</strong>{" "}
-          {event.eventdate
-            ? new Date(event.eventdate).toLocaleDateString()
-            : "N/A"}
+          {new Date(event.eventdate).toLocaleDateString()}
         </p>
         <p>
           <strong>Time:</strong>{" "}
-          {event.eventtime
-            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString()
-            : "N/A"}
+          {new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString()}
         </p>
         <p>
           <strong>Location:</strong> {event.location}
@@ -129,6 +118,24 @@ export default async function EventPage({ params }) {
           RSVP
         </button>
       </div>
+
+      {/* Conditional Delete and Update buttons for creator */}
+      {isCreator && (
+        <div className="mt-6 flex gap-4">
+          <Link href={`/update-event/${id}`}>
+            <button className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] transition duration-300">
+              Update Event
+            </button>
+          </Link>
+
+          <Link href={`/delete-event/${id}`}>
+            <button className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300">
+              Delete Event
+            </button>
+          </Link>
+        </div>
+      )}
+
       <form action={handleSubmit}>
         <fieldset className="flex flex-col items-center border-spacing-1 border-2 border-gray-300 rounded-md w-full p-6">
           <legend className="text-xl font-bold mb-4;">Comment:</legend>
@@ -168,15 +175,10 @@ export default async function EventPage({ params }) {
               </h2>
               <p className="text-[#134b70] text-base">{comment.comment}</p>
               {comment.userid === personalid && (
-                <form
-                  action={async (formData) => {
-                    "use server";
-                    await handleDelete(comment.id);
-                  }}
-                >
+                <form action={async () => await handleDelete(comment.id)}>
                   <button
                     type="submit"
-                    className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300"
+                    className="mt-2 px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition duration-300"
                   >
                     Delete
                   </button>
