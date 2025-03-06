@@ -33,7 +33,7 @@ export default async function DeleteUser({ params }) {
             type="submit"
             className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-700 hover:scale-105 transition duration-300"
           >
-            Confirm Deletion
+            Delete
           </button>
         </form>
 
