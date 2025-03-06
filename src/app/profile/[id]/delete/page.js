@@ -2,7 +2,7 @@ import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import styles from "../../../style.module.css";
+
 export default async function DeleteUser({ params }) {
   const slug = params;
 
@@ -14,36 +14,37 @@ export default async function DeleteUser({ params }) {
     revalidatePath("/");
     redirect("/");
   }
+
   return (
-    <>
-      <div
-        className={`${styles.section} flex justify-center flex-col items-center w-full m-6 bg-slate-300 p-6 rounded-3xl`}
-      >
-        <h1 className={styles.h1}>
-          are you sure you want to delete your account?
-        </h1>
-        <h2 className={styles.h2}>
-          To proceed, please click the button below.
+    <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC] p-10">
+      {/* Deletion Confirmation Section */}
+      <section className="flex flex-col w-full max-w-4xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-6 text-center">
+        <h1 className="text-3xl font-semibold">Delete Your Account</h1>
+        <h2 className="text-lg">
+          Are you sure you want to delete your account?
         </h2>
-        <form action={handleDelete}>
+        <h3 className="text-md">This action is irreversible.</h3>
+
+        <form
+          action={handleDelete}
+          className="flex flex-col items-center gap-4"
+        >
           <button
             type="submit"
-            className="flex hover:bg-red-600 h-8 hover:text-white bg-red-400 p-1 rounded text-black items-center"
+            className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-700 hover:scale-105 transition duration-300"
           >
             Delete
           </button>
         </form>
 
-        <h2 className={styles.h2}>
-          or Click below to navigate back to your profile page
-        </h2>
+        <h2 className="text-lg">Changed your mind? Go back to your profile.</h2>
         <Link
-          href={`/profile`}
-          className="text-black-500 hover:bg-blue-500 w-[50vh] mt-6 p-1 rounded-md border-2 bg-blue-400 text-center"
+          href="/profile"
+          className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
         >
-          Go to Profile
+          Back to Profile
         </Link>
-      </div>
-    </>
+      </section>
+    </div>
   );
 }
