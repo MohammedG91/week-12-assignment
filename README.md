@@ -30,13 +30,15 @@ npm install
 
 Set up environment variables:
 Create a .env file in the root directory and add your configuration details (e.g., API keys, database URL, Clerk API keys). Example:
-DATABASE_URL=<your-database-url>
-CLERK_FRONTEND_API=<your-clerk-frontend-api>
-CLERK_API_KEY=<your-clerk-api-key>
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your clerk key>
+CLERK_SECRET_KEY=<your clerk secret key>
+NEXT_PUBLIC_DATABASE_URL=<your database url, copy the tables from the schema.sql file>
 
 Run the app:
-To start the server, use the following command:
-npm start
+To run the server, use the following command:
+npm run dev
 
 Access the app:
 Open your web browser and go to:
@@ -60,7 +62,6 @@ Please mention the requirements you met and which goals you achieved for this as
 🎯 If so, could you please tell us what was it that you found difficult about these tasks?
 
 What went really well and what could have gone better?
-
 Team collaboration went very well, we had 0 issues, and it went as good as it could have. Using git as the version control software went perfect, and not once did we have any issues or merge conflicts.
 
 Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
