@@ -23,8 +23,10 @@ export default async function Homepage() {
           className="rounded-lg"
         />
 
-        <h1 className="text-5xl font-bold mb-6">Welcome to Local Skills Hub</h1>
-        <p className="text-lg max-w-2xl text-center mb-8">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-center">
+          Welcome to Local Skills Hub
+        </h1>
+        <p className="text-lg sm:text-xl max-w-2xl text-center mb-8">
           Connect, learn, and share skills within your local community. Explore
           events, workshops, and skill listings to grow together!
         </p>
@@ -35,17 +37,18 @@ export default async function Homepage() {
             className="w-full p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC]"
           />
         </div>
+
         {/* Events carousel */}
         <div className="w-full max-w-5xl mt-8">
-          <h2 className="text-3xl font-semibold text-center mb-6">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-6">
             Upcoming Events
           </h2>
 
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center flex-wrap gap-4">
             {events.rows?.map((event) => (
               <div
                 key={event.id}
-                className="bg-[#3b4b57] p-6 shadow-lg rounded-xl overflow-hidden w-[250px] h-[320px] flex flex-col hover:scale-105 transition-transform duration-100"
+                className="bg-[#3b4b57] p-6 shadow-lg rounded-xl overflow-hidden w-[250px] sm:w-[280px] md:w-[300px] lg:w-[320px] h-[320px] flex flex-col hover:scale-105 transition-transform duration-100"
               >
                 <div className="relative w-full h-[150px]">
                   <Image
@@ -74,7 +77,7 @@ export default async function Homepage() {
           <div className="mt-7 flex justify-center">
             <Link
               href="/event"
-              className=" px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
+              className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
             >
               View All Events
             </Link>
@@ -83,15 +86,14 @@ export default async function Homepage() {
 
         {/* Community Section */}
         <div className="w-full max-w-2xl mt-12">
-          <h2 className="text-3xl text-center font-semibold mb-4">
+          <h2 className="text-3xl sm:text-4xl text-center font-semibold mb-4">
             Join Our Community
           </h2>
-          <p className="text-lg text-center mb-6">
+          <p className="text-lg sm:text-xl text-center mb-6">
             Meet like-minded people, share your skills, and grow together in our
             vibrant community.
           </p>
-          <p className="text-lg text-center mb-6">
-            {" "}
+          <p className="text-lg sm:text-xl text-center mb-6">
             Comments section for community
           </p>
           <div className="flex justify-center">
