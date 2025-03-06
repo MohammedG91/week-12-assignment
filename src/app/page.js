@@ -45,7 +45,7 @@ export default async function Homepage() {
             Upcoming Events
           </h2>
 
-          <div className="flex justify-center flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:flex-nowrap lg:gap-10 xl:gap-12">
             {events.rows?.map((event) => (
               <div
                 key={event.id}
