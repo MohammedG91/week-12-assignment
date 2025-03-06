@@ -63,7 +63,14 @@ export default async function CommunityPage() {
               <p className="mt-4 text-sm text-gray-500">
                 Posted on: {new Date(post.createdat).toLocaleString()}
               </p>
+
               <div className="mt-4 text-right">
+                <Link
+                  href={`/community/${post.id}/update`}
+                  className="text-[#688b96] hover:text-[#1b3f44] transition duration-300 m-5"
+                >
+                  Update
+                </Link>
                 <Link
                   href={`/community/${post.id}/delete`}
                   className="text-[#9b6050] hover:text-[#702113] transition duration-300"
