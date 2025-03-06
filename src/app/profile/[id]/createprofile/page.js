@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Create Profile - Local Skills Hub",
+  description:
+    "Create your profile on Local Skills Hub. Share your skills, set up your preferences, and connect with your local community to start sharing and learning skills.",
+};
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import styles from "../../../style.module.css";

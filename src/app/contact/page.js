@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Contact Us - Local Skills Hub",
+  description:
+    "Get in touch with the Local Skills Hub team. If you have any questions, feedback, or need assistance, reach out to us through the contact form.",
+};
+
 import { db } from "@/utils/dbConnection";
 
 export default function ContactPage() {

@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Update Event - Local Skills Hub",
+  description:
+    "Edit and update your event details on Local Skills Hub. Modify event information, dates, or any other details to keep your community informed and engaged.",
+};
+
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

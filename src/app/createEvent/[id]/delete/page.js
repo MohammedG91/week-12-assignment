@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Delete Event - Local Skills Hub",
+  description:
+    "Remove an event from Local Skills Hub. Confirm deletion of your event and ensure that your community is updated accordingly.",
+};
+
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";

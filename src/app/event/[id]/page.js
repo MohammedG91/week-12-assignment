@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Event Details - Local Skills Hub",
+  description:
+    "Discover the details of this event, including description, schedule, and location. Join the conversation through comments and RSVP to attend the event within your community.",
+};
+
 import { db } from "@/utils/dbConnection";
 import Image from "next/image";
 import { notFound } from "next/navigation";

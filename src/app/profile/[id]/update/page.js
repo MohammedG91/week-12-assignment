@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Update Profile - Local Skills Hub",
+  description:
+    "Update your profile on Local Skills Hub. Edit your skills, personal details, and preferences to better connect with your local community and enhance your skill-sharing experience.",
+};
+
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
