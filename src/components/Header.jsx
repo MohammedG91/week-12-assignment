@@ -29,6 +29,7 @@ const pages = [
   { name: "About Us", link: "/about" },
   { name: "Events", link: "/event" },
   { name: "Profile", link: "/profile" },
+  { name: "Community", link: "/community" },
 ];
 
 export default function ResponsiveAppBar() {
