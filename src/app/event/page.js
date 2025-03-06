@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import BackToTopButton from "@/components/BackToTopButton";
 
 export const metadata = {
   title: "Events & Workshops",
@@ -12,22 +13,16 @@ export const metadata = {
 export default async function EventsPage() {
   const { userId } = await auth();
 
+  // Get user information
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
-
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
-  const events = await db.query(
-    "SELECT * FROM events WHERE ispublic = true ORDER BY eventdate LIMIT 5"
+  // Fetch events sorted by event date
+  const allEvents = await db.query(
+    "SELECT * FROM events ORDER BY eventdate ASC"
   );
-
-  if (events.error) {
-    console.error("Error querying the database:", events.error);
-    return notFound();
-  }
-
-  const allEvents = await db.query("SELECT * FROM events ORDER BY eventdate");
 
   if (allEvents.error) {
     console.error("Error querying the database:", allEvents.error);
@@ -35,79 +30,70 @@ export default async function EventsPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC]">
+    <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-8">
       <input
         type="text"
         placeholder="Search for skills or events..."
-        className="w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC] absolute top-28 right-4"
+        className="w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] absolute top-28 right-4"
       />
-      <main className="flex flex-col items-center justify-center flex-grow p-8 w-full bg-[#D1E2EB] text-[#134b70]">
-        {/* Events carousel */}
-        <div className="w-full max-w-3xl mb-8">
-          <h2 className="text-3xl font-semibold text-center mb-4">
-            Featured Events
-          </h2>
-          <div className="carousel flex overflow-x-scroll space-x-4">
-            {events.rows.map((event) => (
-              <div
-                key={event.id}
-                className="carousel-item bg-[#3b4b57] p-6 rounded-lg flex-none w-[320px] hover:scale-105 transition-transform duration-300"
-              >
-                <Image
-                  src={event.imageurl || "/default-event.jpg"}
-                  alt={event.eventname}
-                  width={300}
-                  height={200}
-                  className="rounded-md"
-                />
-                <h3 className="text-xl text-center mt-4 text-white">
-                  {event.eventname}
-                </h3>
-                <Link
-                  href={`/event/${event.id}`}
-                  className="mt-4 p-2 bg-[#124e66] text-white rounded-lg text-center block hover:bg-[#508c9b] transition duration-300"
-                >
-                  View Details
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Page Title */}
+      <h1 className="text-4xl font-semibold text-center text-[#134b70] mb-8">
+        Upcoming Events & Workshops
+      </h1>
 
-        {/* Events list by date */}
-        <div className="w-full max-w-2xl">
-          <h2 className="text-3xl font-semibold text-center mb-4">
-            All Events
-          </h2>
-          <ul>
-            {allEvents.rows.map((event) => (
-              <li
-                key={event.id}
-                className="bg-[#3b4b57] p-6 rounded-lg mb-4 hover:scale-105 transition-transform duration-300"
-              >
-                <Link
-                  href={`/event/${event.id}`}
-                  className="text-white text-xl"
-                >
-                  {event.eventname}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Events List */}
+      <div className="w-full max-w-4xl mx-auto space-y-6">
+        {allEvents.rows.map((event) => (
+          <div
+            key={event.id}
+            className="flex bg-[#3b4b57] text-white rounded-lg overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 items-stretch"
+          >
+            {/* Event Image */}
+            <div className="w-1/3 flex">
+              <Image
+                src={event.imageurl || "/default-event.jpg"}
+                alt={event.eventname}
+                width={200}
+                height={150}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
-        {/* Create event button */}
-        {userId && (
-          <div className="mt-6">
-            <Link
-              href={`/createEvent/${personalid}/create`}
-              className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300"
-            >
-              Create Event
-            </Link>
+            {/* Event Details */}
+            <div className="w-2/3 p-6 flex flex-col justify-between">
+              <h2 className="text-2xl font-semibold">{event.eventname}</h2>
+              <p className="text-[#A5BFCC] mt-2">
+                {new Date(event.eventdate).toLocaleDateString("en-US", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+              <Link
+                href={`/event/${event.id}`}
+                className="mt-4 px-4 py-2 bg-[#124e66] text-white rounded-lg text-center block hover:bg-[#508c9b] transition duration-300"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
-        )}
-      </main>
+        ))}
+      </div>
+
+      {/* Create Event Button */}
+      {userId && (
+        <div className="mt-10 text-center">
+          <Link
+            href={`/createEvent/${personalid}/create`}
+            className="px-6 py-3 bg-[#124e66] text-white rounded-lg hover:bg-[#508c9b] transition duration-300"
+          >
+            Create Event
+          </Link>
+        </div>
+      )}
+
+      <BackToTopButton />
     </div>
   );
 }
