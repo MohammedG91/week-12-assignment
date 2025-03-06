@@ -31,11 +31,9 @@ export default async function EventPage({ params }) {
   // comment part
   // getting userid
   const { userId } = await auth();
-
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
-
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
   async function handleSubmit(formValues) {
@@ -46,9 +44,21 @@ export default async function EventPage({ params }) {
     const userid = personalid;
 
     await db.query(
-      `INSERT INTO comments (eventid,comment,userid) VALUES ($1, $2, $3)`,
+      `INSERT INTO comments (eventid, comment, userid) VALUES ($1, $2, $3)`,
       [eventid, comment, userid]
     );
+
+    revalidatePath(`/event/${id}`);
+    redirect(`/event/${id}`);
+  }
+
+  async function handleDelete(commentId) {
+    "use server";
+
+    await db.query(`DELETE FROM comments WHERE id = $1 AND userid = $2`, [
+      commentId,
+      personalid,
+    ]);
 
     revalidatePath(`/event/${id}`);
     redirect(`/event/${id}`);
@@ -83,13 +93,13 @@ export default async function EventPage({ params }) {
         <p>
           <strong>Date:</strong>{" "}
           {event.eventdate
-            ? new Date(event.eventdate).toLocaleDateString() // Formatting DATE type
+            ? new Date(event.eventdate).toLocaleDateString()
             : "N/A"}
         </p>
         <p>
           <strong>Time:</strong>{" "}
           {event.eventtime
-            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString() // Formatting TIME type
+            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString()
             : "N/A"}
         </p>
         <p>
@@ -140,17 +150,32 @@ export default async function EventPage({ params }) {
         </fieldset>
       </form>
 
-      <div className="mt-8 p-6 bg-[#aabac3]  rounded-lg shadow-lg w-full">
+      <div className="mt-8 p-6 bg-[#aabac3] rounded-lg shadow-lg w-full">
         {wrangledComments.length > 0 ? (
           wrangledComments.map((comment) => (
             <div
               key={comment.id}
-              className="bg-[#A5BFCC]  p-4 rounded-lg shadow-sm mb-4 hover:shadow-md transition-shadow duration-200"
+              className="bg-[#A5BFCC] p-4 rounded-lg shadow-sm mb-4 hover:shadow-md transition-shadow duration-200"
             >
               <h2 className="font-semibold text-[#124e66]">
                 {comment.username}
               </h2>
               <p className="text-[#134b70] text-base">{comment.comment}</p>
+              {comment.userid === personalid && (
+                <form
+                  action={async (formData) => {
+                    "use server";
+                    await handleDelete(comment.id);
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="mt-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300"
+                  >
+                    Delete
+                  </button>
+                </form>
+              )}
             </div>
           ))
         ) : (
