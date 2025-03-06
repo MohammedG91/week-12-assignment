@@ -30,25 +30,29 @@ export default async function EventsPage() {
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-8">
-      <input
-        type="text"
-        placeholder="Search for skills or events..."
-        className="w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] absolute top-28 right-4"
-      />
-      {/* Page Title */}
-      <h1 className="text-4xl font-semibold text-center text-[#134b70] mb-8">
-        Upcoming Events & Workshops
-      </h1>
+      {/* Search Input */}
+
+      <div className="relative w-full">
+        <input
+          type="text"
+          placeholder="Search for skills or events..."
+          className="w-full sm:w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] sm:mt-2 focus:outline-none focus:border-[#508c9b] mb-6 sm:absolute sm:top-6 sm:right-4"
+        />
+        {/* Page Title */}
+        <h1 className="text-4xl font-semibold text-center text-[#134b70] sm:mt-0 mt-8 mb-8">
+          Upcoming Events & Workshops
+        </h1>
+      </div>
 
       {/* Events List */}
       <div className="w-full max-w-4xl mx-auto space-y-6">
         {allEvents.rows.map((event) => (
           <div
             key={event.id}
-            className="flex bg-[#3b4b57] text-white rounded-lg overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 items-stretch"
+            className="flex flex-col sm:flex-row bg-[#3b4b57] text-white rounded-lg overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 items-stretch"
           >
             {/* Event Image */}
-            <div className="w-1/3 flex">
+            <div className="w-full sm:w-1/3 flex justify-center">
               <Image
                 src={event.imageurl || "/default-event.jpg"}
                 alt={event.eventname}
@@ -59,7 +63,7 @@ export default async function EventsPage() {
             </div>
 
             {/* Event Details */}
-            <div className="w-2/3 p-6 flex flex-col justify-between">
+            <div className="w-full sm:w-2/3 p-6 flex flex-col justify-between">
               <h2 className="text-2xl font-semibold">{event.eventname}</h2>
               <p className="text-[#A5BFCC] mt-2">
                 {new Date(event.eventdate).toLocaleDateString("en-US", {
