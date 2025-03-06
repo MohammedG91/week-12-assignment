@@ -10,19 +10,32 @@ export default async function Profile() {
   // Fetching user profile data
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [id]);
 
-  // showing this when user doesn't have profile
   if (!user.rows.length) {
+    // automatically create a profile
+    const defaultUsername = "New User";
+    const defaultBio = "This is my bio.";
+    const defaultProfilePic = "/default-profile-pic.jpg";
+    const userType = "Learner";
+
+    // insert profile into the database
+    await db.query(
+      `INSERT INTO users (clerkid, username, profilepic, bio, datejoined, usertype) VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP, $5)`,
+      [id, defaultUsername, defaultProfilePic, defaultBio, userType]
+    );
+
+    const newUser = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
+      id,
+    ]);
     return (
       <section className="flex flex-col justify-center items-center w-full h-[50vh] p-10 m-4 rounded-lg shadow-lg bg-[#4C585B] text-[#D1E2EB]">
         <h2 className="text-2xl">
-          Welcome! Please create your profile to get started
+          Welcome! Your profile has been created automatically.
         </h2>
-
         <Link
-          href={`/profile/${id}/createprofile`}
+          href={`/profile/${id}`}
           className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
         >
-          Create Profile
+          View Your Profile
         </Link>
       </section>
     );
