@@ -14,8 +14,8 @@ export default function About() {
           Our journey began as a bootcamp project, but it quickly evolved into
           something more—a platform that connects students with skilled
           teachers, fostering accessible and community-driven learning
-          experiences. Whether you're looking to learn a new skill or share your
-          expertise, our app is here to make that connection seamless and
+          experiences. Whether you&apos;re looking to learn a new skill or share
+          your expertise, our app is here to make that connection seamless and
           impactful.
         </p>
       </section>

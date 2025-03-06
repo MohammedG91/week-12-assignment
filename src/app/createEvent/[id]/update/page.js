@@ -60,7 +60,7 @@ export default async function UpdateEvent({ params }) {
   }
 
   return (
-    <div className="flex justify-center flex-col items-center w-full min-h-screen bg-[#A5BFCC] p-6">
+    <div className="flex justify-center flex-col items-center w-full min-h-screen bg-[#D1E2EB] p-6">
       <h1 className="text-3xl font-bold text-[#134b70] mb-4">Update Event</h1>
 
       <form

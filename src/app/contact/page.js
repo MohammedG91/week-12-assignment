@@ -22,8 +22,8 @@ export default function ContactPage() {
         </h1>
         <p className="text-center text-lg text-[#4C585B]">
           If you want to contact us for any reason—good, bad, make a complaint,
-          or let us know what we're doing well or not—please fill out the form
-          below. We appreciate your feedback!
+          or let us know what we&apos;re doing well or not—please fill out the
+          form below. We appreciate your feedback!
         </p>
       </div>
 

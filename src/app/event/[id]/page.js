@@ -66,7 +66,7 @@ export default async function EventPage({ params }) {
 
   return (
     <div
-      className="min-h-screen p-8 bg-[#A5BFCC] text-[#134b70] 
+      className="min-h-screen p-8 bg-[#D1E2EB] text-[#134b70] 
      sm:p-1 md:p-2 lg:p-12 xl:p-16 
       flex flex-col items-center justify-center w-full m-0 sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none"
     >
@@ -83,13 +83,13 @@ export default async function EventPage({ params }) {
         <p>
           <strong>Date:</strong>{" "}
           {event.eventdate
-            ? new Date(event.eventdate).toLocaleDateString() // Formatting DATE type
+            ? new Date(event.eventdate).toLocaleDateString()
             : "N/A"}
         </p>
         <p>
           <strong>Time:</strong>{" "}
           {event.eventtime
-            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString() // Formatting TIME type
+            ? new Date(`1970-01-01T${event.eventtime}`).toLocaleTimeString()
             : "N/A"}
         </p>
         <p>

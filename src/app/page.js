@@ -73,7 +73,7 @@ export default async function Homepage() {
           </div>
           <div className="mt-7 flex justify-center">
             <Link
-              href="/events"
+              href="/event"
               className=" px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300"
             >
               View All Events

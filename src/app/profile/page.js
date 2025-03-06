@@ -50,7 +50,7 @@ export default async function Profile() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC] p-10">
+    <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-10">
       {/* Profile Section */}
       <section className="flex flex-col w-full max-w-6xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-8">
         <aside className="flex flex-col justify-center items-center gap-4 w-full">
