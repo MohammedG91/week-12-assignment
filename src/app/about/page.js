@@ -90,7 +90,7 @@ const teamMembers = [
     name: "Sita",
     role: "COO",
     image: "/team/sita.jpg",
-    bio: "While hiking, Sita encountered a 'fork' in the trail; she had to 'merge' into the new path.",
+    bio: "A dedicated coding enthusiast, blending my love for programming with time spent on the trail, seeking balance and inspiration in both worlds.",
   },
   {
     id: 4,
