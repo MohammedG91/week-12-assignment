@@ -108,7 +108,7 @@ export default async function Profile() {
                 Create Event
               </Link>
               <Link
-                href={`/createcommunitypost/${personalid}/create`}
+                href={`/community/${personalid}/create`}
                 className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] hover:scale-105 transition duration-300 inline-block"
               >
                 Create Community Post
