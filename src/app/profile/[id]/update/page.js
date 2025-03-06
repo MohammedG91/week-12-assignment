@@ -34,7 +34,7 @@ export default async function updateProfile({ params }) {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen w-full bg-[#A5BFCC] p-10">
+      <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-10">
         {/* Form Section */}
         <section className="flex flex-col w-full max-w-4xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-8">
           <h1 className="text-3xl text-center font-semibold mb-6">
