@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
-import BackToTopButton from "@/components/BackToTopButton";
 
 export const metadata = {
   title: "Events & Workshops",
@@ -92,8 +91,6 @@ export default async function EventsPage() {
           </Link>
         </div>
       )}
-
-      <BackToTopButton />
     </div>
   );
 }

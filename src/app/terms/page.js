@@ -90,9 +90,9 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#A5BFCC] w-full">
+    <div className="flex min-h-screen bg-[#A5BFCC] w-full flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-1/5 bg-[#134b70] p-6 shadow-md text-[#D1E2EB]">
+      <aside className="w-full md:w-1/5 bg-[#134b70] p-6 shadow-md text-[#D1E2EB]">
         <h2 className="text-xl font-bold mb-4">Quick Navigation</h2>
         <nav>
           <ul>
@@ -121,7 +121,7 @@ export default function TermsPage() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-10 bg-[#D1E2EB] shadow-md">
+      <main className="flex-1 p-6 md:p-10 bg-[#D1E2EB] shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-[#134b70]">
           Terms & Conditions
         </h1>

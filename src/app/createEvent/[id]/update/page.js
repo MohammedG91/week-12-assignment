@@ -65,7 +65,7 @@ export default async function UpdateEvent({ params }) {
 
       <form
         action={handleUpdate}
-        className="flex flex-col justify-center items-center border-2 border-[#7E99A3] w-[70vh] p-6 rounded-lg bg-[#D1E2EB] shadow-lg"
+        className="flex flex-col justify-center items-center border-2 border-[#7E99A3] w-full p-6 rounded-lg bg-[#D1E2EB] shadow-lg"
       >
         <label htmlFor="eventname" className="text-[#134b70] font-semibold">
           Event Name:
