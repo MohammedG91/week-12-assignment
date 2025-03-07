@@ -111,7 +111,7 @@ export default async function UpdatePost({ params }) {
           type="submit"
           className="bg-[#134b70] text-white px-6 py-3 rounded-lg border-2 border-[#134b70] text-center mt-6 hover:bg-[#508c9b] hover:scale-105 transition duration-300"
         >
-          update Post
+          Update Post
         </button>
       </form>
     </div>

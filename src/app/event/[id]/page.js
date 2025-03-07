@@ -6,13 +6,15 @@ export const metadata = {
 
 import { db } from "@/utils/dbConnection";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function EventPage({ params }) {
-  const { id } = await params;
+  const { id } = params;
+
+  // Fetch event details
   const eventResult = await db.query(
     `
     SELECT events.*, event_categories.name AS category_name, users.username 
@@ -29,22 +31,22 @@ export default async function EventPage({ params }) {
     return notFound();
   }
 
-  if (!eventResult.rows.length)
+  if (!eventResult.rows.length) {
     return <div className="text-center text-white mt-10">Event Not Found</div>;
+  }
 
   const event = eventResult.rows[0];
 
-  // comment part
-  // getting userid
   const { userId } = await auth();
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
+  const isCreator = personalid === event.userid;
+
   async function handleSubmit(formValues) {
     "use server";
-
     const eventid = id;
     const comment = formValues.get("comment");
     const userid = personalid;
@@ -60,7 +62,6 @@ export default async function EventPage({ params }) {
 
   async function handleDelete(commentId) {
     "use server";
-
     await db.query(`DELETE FROM comments WHERE id = $1 AND userid = $2`, [
       commentId,
       personalid,
@@ -70,7 +71,6 @@ export default async function EventPage({ params }) {
     redirect(`/event/${id}`);
   }
 
-  // Fetch comments with username
   const comments = await db.query(
     `SELECT comments.*, users.username FROM comments
      JOIN users ON comments.userid = users.id
@@ -81,12 +81,10 @@ export default async function EventPage({ params }) {
   const wrangledComments = comments.rows;
 
   return (
-    <div
-      className="min-h-screen p-8 bg-[#D1E2EB] text-[#134b70] 
-     sm:p-1 md:p-2 lg:p-12 xl:p-16 
-      flex flex-col items-center justify-center w-full m-0 sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none"
-    >
+    <div className="min-h-screen p-8 bg-[#D1E2EB] text-[#134b70] flex flex-col items-center justify-center w-full">
       <h1 className="text-4xl text-[#124e66] mb-6">{event.eventname}</h1>
+
+      {/* Event Details */}
       <div className="flex flex-col items-center">
         <Image
           src={event.imageurl || "/img/default-event.jpg"}
@@ -129,8 +127,41 @@ export default async function EventPage({ params }) {
           RSVP
         </button>
       </div>
+
+      {isCreator && (
+        <div className="mt-6 flex gap-4">
+          {/* Update Event Button */}
+          <Link href={`/createEvent/${id}/update`}>
+            <button className="px-6 py-3 bg-[#508c9b] text-white rounded-lg hover:bg-[#134b70] transition duration-300">
+              Update Event
+            </button>
+          </Link>
+
+          {/* Delete Event Button */}
+          <form
+            action={async () => {
+              "use server";
+              await db.query(
+                `DELETE FROM events WHERE id = $1 AND userid = $2`,
+                [id, personalid]
+              );
+              revalidatePath("/event");
+              redirect("/event");
+            }}
+          >
+            <button
+              type="submit"
+              className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300"
+            >
+              Delete Event
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Comment Section */}
       <form action={handleSubmit}>
-        <fieldset className="flex flex-col items-center border-spacing-1 border-2 border-gray-300 rounded-md w-full p-6">
+        <fieldset className="flex flex-col items-center border-spacing-1 border-2 border-gray-300 rounded-md w-full p-6 mt-7">
           <legend className="text-xl font-bold mb-4;">Comment:</legend>
 
           <label
@@ -156,6 +187,7 @@ export default async function EventPage({ params }) {
         </fieldset>
       </form>
 
+      {/* Display Comments */}
       <div className="mt-8 p-6 bg-[#aabac3] rounded-lg shadow-lg w-full">
         {wrangledComments.length > 0 ? (
           wrangledComments.map((comment) => (
@@ -167,9 +199,10 @@ export default async function EventPage({ params }) {
                 {comment.username}
               </h2>
               <p className="text-[#134b70] text-base">{comment.comment}</p>
+
               {comment.userid === personalid && (
                 <form
-                  action={async (formData) => {
+                  action={async () => {
                     "use server";
                     await handleDelete(comment.id);
                   }}

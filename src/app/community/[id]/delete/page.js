@@ -23,7 +23,7 @@ export default async function DeletePost({ params }) {
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-10">
-      {/* Deletion Confirmation Section */}
+      {/* Delete Section */}
       <section className="flex flex-col w-full max-w-4xl mx-auto bg-[#4C585B] text-[#D1E2EB] shadow-lg rounded-lg p-10 gap-6 text-center">
         <h1 className="text-3xl font-semibold">Delete Your post</h1>
         <h2 className="text-lg">
