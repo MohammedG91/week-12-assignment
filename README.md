@@ -135,11 +135,23 @@ Please mention the requirements you met and which goals you achieved for this as
 
 🎯What went really well and what could have gone better?
 
-    Team collaboration went very well, we had 0 issues, and it went as good as it could have. Using git as the version control software went perfect, and not once did we have any issues or merge conflicts.
+    Team collaboration went really well throughout the project. We had good time management, with everyone staying on task and meeting deadlines. Communication was key, and we made sure to stay in constant touch to ensure everyone was on the same page. When necessary, we used pair programming to tackle more complex tasks, which helped us solve problems more effectively. Although we faced a few initial git issues, we worked together efficiently to fix them, and our use of git for version control went smoothly without any major merge conflicts. Overall, our strong teamwork, effective communication, and willingness to support one another allowed us to work seamlessly as a group and keep the project moving forward.
 
 🎯Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
 
+    https://mui.com/material-ui/getting-started/installation/
+
+    https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu
+
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
+
+    https://www.radix-ui.com/primitives/docs/components/accordion
+
+    https://motion.dev/docs/react-scroll-animations
+
 🎯Describing errors or bugs you encountered while completing your assignment.
+
+    While completing the assignment, we encountered a few issues. One challenge was ensuring that only the owner of an event and community posts could see the links to update or delete it. We had to implement the correct logic to make sure these actions were restricted to the owners. Additionally, we faced some git merge issues, but as a group, we worked together to resolve them and keep everything on track.
 
 ---
 
@@ -152,3 +164,7 @@ https://mui.com/material-ui/getting-started/installation/
 https://mui.com/material-ui/react-app-bar/#app-bar-with-responsive-menu
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString
+
+https://www.radix-ui.com/primitives/docs/components/accordion
+
+https://motion.dev/docs/react-scroll-animations
