@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { db } from "@/utils/dbConnection";
+import { FaSearch } from "react-icons/fa";
 
 export const metadata = {
   title: "Local Skills Hub - Homepage",
@@ -34,9 +35,10 @@ export default async function Homepage() {
         <div className="mb-6 w-full max-w-lg">
           <input
             type="text"
-            placeholder="Search for skills or events..."
-            className="w-full p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] bg-[#A5BFCC]"
+            placeholder="     Search for skills or events..."
+            className="w-full p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] focus:outline-none focus:border-[#508c9b] "
           />
+          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#7E99A3]" />
         </div>
 
         {/* Events Section */}
