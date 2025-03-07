@@ -10,12 +10,14 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function DeleteEvent({ params }) {
-  const slug = params;
+  const { id } = params;
 
   async function handleDelete() {
     "use server";
 
-    await db.query(`DELETE FROM events WHERE id = $1`, [slug.id]);
+    console.log("Deleting event with ID:", id);
+
+    await db.query(`DELETE FROM events WHERE id = $1`, [id]);
 
     revalidatePath("/profile");
     redirect("/profile");
@@ -25,7 +27,6 @@ export default async function DeleteEvent({ params }) {
     <div className="flex justify-center flex-col items-center w-full min-h-screen bg-[#D1E2EB] p-6">
       <h1 className="text-3xl font-bold text-[#134b70] mb-4">Delete Event</h1>
 
-      {/* Deletion Confirmation Section */}
       <section className="flex flex-col justify-center items-center border-2 border-[#7E99A3] w-[95%] sm:w-[60%] mx-auto p-6 rounded-lg bg-[#D1E2EB] shadow-lg">
         <h2 className="text-lg text-center mb-4">
           Are you sure you want to delete this event?

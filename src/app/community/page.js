@@ -13,13 +13,11 @@ import { auth } from "@clerk/nextjs/server";
 export default async function CommunityPage() {
   const { userId } = await auth();
 
-  // Get user information
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
-  // Fetch community posts with all columns from community_posts
   const posts = await db.query(`
   SELECT p.*, c.name AS category
   FROM community_posts p
@@ -71,12 +69,15 @@ export default async function CommunityPage() {
                 >
                   Update
                 </Link>
-                <Link
-                  href={`/community/${post.id}/delete`}
-                  className="text-[#9b6050] hover:text-[#702113] transition duration-300"
-                >
-                  Delete
-                </Link>
+
+                {userId && (
+                  <Link
+                    href={`/community/${post.id}/delete`}
+                    className="text-[#9b6050] hover:text-[#702113] transition duration-300"
+                  >
+                    Delete
+                  </Link>
+                )}
               </div>
             </div>
           ))

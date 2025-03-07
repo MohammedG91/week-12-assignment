@@ -39,32 +39,31 @@ export default async function Homepage() {
           />
         </div>
 
-        {/* Events carousel */}
+        {/* Events Section */}
         <div className="w-full max-w-5xl mt-8">
           <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-6">
             Upcoming Events
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:flex-nowrap lg:gap-10 xl:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {events.rows?.map((event) => (
               <div
                 key={event.id}
-                className="bg-[#3b4b57] p-6 shadow-lg rounded-xl overflow-hidden w-[250px] sm:w-[280px] md:w-[300px] lg:w-[320px] h-[320px] flex flex-col hover:scale-105 transition-transform duration-100"
+                className="bg-[#3b4b57] p-4 shadow-lg rounded-xl overflow-hidden flex flex-col h-full hover:scale-105 transition-transform duration-100"
               >
-                <div className="relative w-full h-[150px]">
+                <div className="relative w-full h-[150px] mb-4">
                   <Image
                     src={event.imageurl || "/default-event.jpg"}
                     alt={event.eventname}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-md"
                   />
                 </div>
 
-                <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="text-lg font-semibold text-white">
+                <div className="flex flex-col flex-grow">
+                  <h3 className="text-lg font-semibold text-white mb-2">
                     {event.eventname}
                   </h3>
-
                   <Link
                     href={`/event/${event.id}`}
                     className="mt-auto px-4 py-2 bg-[#124e66] text-white rounded-lg text-center hover:bg-[#508c9b] hover:scale-105 transition duration-300 inline-block"
@@ -75,6 +74,7 @@ export default async function Homepage() {
               </div>
             ))}
           </div>
+
           <div className="mt-7 flex justify-center">
             <Link
               href="/event"

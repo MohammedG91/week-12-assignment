@@ -26,14 +26,12 @@ export default async function createCommunityPost({ params }) {
     const createdat = new Date().toISOString();
     const category_id = formData.get("selectedCategoryId");
 
-    // Insert the community post data into the database
     await db.query(
       `INSERT INTO community_posts (userid, title, content, posttype, category_id, createdat) 
        VALUES ($1, $2, $3, $4, $5, $6)`,
       [userid, title, content, posttype, category_id, createdat]
     );
 
-    // Redirect to the events page after saving
     revalidatePath("/community");
     redirect("/community");
   }

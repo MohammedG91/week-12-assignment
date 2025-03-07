@@ -36,9 +36,10 @@ export default async function CreateEvent({ params }) {
     const ispublic = formData.get("ispublic") === "true";
     const createdate = new Date().toISOString();
 
-    await db.query(
+    // Insert new event into the database
+    const result = await db.query(
       `INSERT INTO events(userid, eventname, description, category_id, eventdate, eventtime, location, price, maxattendees, imageurl, ispublic, createdate) 
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
       [
         userid,
         eventname,
@@ -55,8 +56,10 @@ export default async function CreateEvent({ params }) {
       ]
     );
 
-    revalidatePath("/profile");
-    redirect("/profile");
+    const eventId = result.rows[0].id; 
+
+    revalidatePath(`/event/${eventId}`);
+    redirect(`/event/${eventId}`);
   }
 
   return (

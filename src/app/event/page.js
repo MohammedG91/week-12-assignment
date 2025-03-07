@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
+import { FaSearch } from "react-icons/fa";
 
 export default async function EventsPage() {
   const { userId } = await auth();
@@ -32,13 +33,16 @@ export default async function EventsPage() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-[#D1E2EB] p-8">
       {/* Search Input */}
-
       <div className="relative w-full">
         <input
           type="text"
-          placeholder="Search for skills or events..."
-          className="w-full sm:w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] sm:mt-2 focus:outline-none focus:border-[#508c9b] mb-6 sm:absolute sm:top-6 sm:right-4"
+          placeholder="     Search for skills or events..."
+          className="w-full sm:w-[300px] p-3 border-2 border-[#7E99A3] rounded-lg text-[#134b70] sm:mt-2 focus:outline-none focus:border-[#508c9b] mb-6 sm:top-6 sm:right-4 sm:mb-0"
         />
+        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#7E99A3]" />
+      </div>
+
+      <div className="relative w-full">
         {/* Page Title */}
         <h1 className="text-4xl font-semibold text-center text-[#134b70] sm:mt-0 mt-8 mb-8">
           Upcoming Events & Workshops
