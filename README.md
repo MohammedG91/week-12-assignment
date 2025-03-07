@@ -119,6 +119,8 @@ That’s it! You should now be able to access and use your Local Skill Share app
 
 # **Lighthouse report:**
 
+![alt text](eventlighthouse.png)
+
 ---
 
 # **Reflections:**
