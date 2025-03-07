@@ -6,24 +6,26 @@ export const metadata = {
 
 import { db } from "@/utils/dbConnection";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
 export default async function CommunityPage() {
+  // get log in userclerk id
   const { userId } = await auth();
 
+  // Fetching user information from the `users` table using the Clerk ID
   const user = await db.query(`SELECT * FROM users WHERE clerkid = $1`, [
     userId,
   ]);
   const personalid = user.rows.length > 0 ? user.rows[0].id : null;
 
+  // Fetching all community posts
   const posts = await db.query(`
-  SELECT p.*, c.name AS category
-  FROM community_posts p
-  JOIN event_categories c ON p.category_id = c.id
-  ORDER BY p.createdat DESC
-`);
+    SELECT p.*, c.name AS category
+    FROM community_posts p
+    JOIN event_categories c ON p.category_id = c.id
+    ORDER BY p.createdat DESC
+  `);
 
   const communityPosts = posts.rows;
 
@@ -63,20 +65,23 @@ export default async function CommunityPage() {
               </p>
 
               <div className="mt-4 text-right">
-                <Link
-                  href={`/community/${post.id}/update`}
-                  className="text-[#688b96] hover:text-[#1b3f44] transition duration-300 m-5"
-                >
-                  Update
-                </Link>
+                {/* Only show these if the logged-in user is the author of the post */}
+                {userId && post.userid === personalid && (
+                  <>
+                    <Link
+                      href={`/community/${post.id}/update`}
+                      className="text-[#688b96] hover:text-[#1b3f44] transition duration-300 m-5"
+                    >
+                      Update
+                    </Link>
 
-                {userId && (
-                  <Link
-                    href={`/community/${post.id}/delete`}
-                    className="text-[#9b6050] hover:text-[#702113] transition duration-300"
-                  >
-                    Delete
-                  </Link>
+                    <Link
+                      href={`/community/${post.id}/delete`}
+                      className="text-[#9b6050] hover:text-[#702113] transition duration-300"
+                    >
+                      Delete
+                    </Link>
+                  </>
                 )}
               </div>
             </div>
