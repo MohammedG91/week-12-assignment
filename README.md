@@ -85,7 +85,7 @@ Material UI (MUI) – UI components for a consistent and responsive header desig
 _Instructions for Users:_
 
 Visit the website to sign up, manage your profile, explore local events, connect with the community, and reach out to the team for any assistance.
-(week-12-assignment-weld.vercel.app.)
+([week-12-assignment-weld.vercel.app.](https://week-12-assignment-weld.vercel.app/))
 
 _Instructios for developers:_
 
@@ -96,9 +96,13 @@ _Instructios for developers:_
 3.  Set up environment variables: Create a .env file in the root directory and add your configuration details (e.g., API keys, database URL, Clerk API keys). Example:
 
     NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+
     NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<your clerk key>
+
     CLERK_SECRET_KEY=<your clerk secret key>
+
     NEXT_PUBLIC_DATABASE_URL=<your database url, copy the tables from the schema.sql file>
 
 4.  Create the database schema by running the SQL commands in schema.sql in your database (eg. by running the commands in Supabase Query Editor)
@@ -123,7 +127,11 @@ Please mention the requirements you met and which goals you achieved for this as
 
 🎯 Were there any requirements or goals that you were not quite able to achieve?
 
+    As a group, we weren't able to fully implement the features we had planned, including the ability to filter events by category or location and RSVP to events. Despite this, we successfully achieved all the other goals we set, and we worked really well as a team throughout the process.
+
 🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+
+    The tasks of filtering events by category or location and adding an RSVP feature were difficult mainly because of time limitations. We didn't have enough time to fully develop these features, and they turned out to be more complex than we expected. We had to focus on other goals that were more achievable within the time we had.
 
 🎯What went really well and what could have gone better?
 
